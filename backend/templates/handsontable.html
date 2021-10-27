@@ -1,0 +1,218 @@
+{% extends 'base-template.html' %} {% block extra_head %}
+
+<link href="https://cdn.jsdelivr.net/npm/handsontable@7.4.2/dist/handsontable.full.min.css" rel="stylesheet" media="screen">
+
+<style>
+    .tooltip {
+        border-bottom: 1px dotted black;
+    }
+    
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: grey;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 9999;
+    }
+    
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+</style>
+{% endblock %}{% block content %}
+<div class="ui active centered inline loader" id="loader"></div>
+<div class="ui container">
+    <button class="ui primary button" onclick="downloadasCSV()" id="download" style="display: none;">Download as .csv <i class="download icon"></i></button>
+    <button class="ui primary button" onclick="datatableUpload()" id="reupload" style="display: none;">Retry upload with modified File</button>
+    <form action="{% url 'upload_data_datatable' %}" method="post" id="reuploadgo" style="display: none; margin-top: 10px;">
+        {% csrf_token %}
+        <button type="submit" class="ui primary button">Go to Response Board</button>
+    </form>
+</div>
+<div class="ui container inline centered">
+    <div id="datatable" class="hot handsontable htRowHeaders htColumnHeaders" style="float:center"></div>
+</div>
+
+{% endblock %} {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/handsontable@7.4.2/dist/handsontable.full.min.js"></script>
+<script>
+    var exportPlugin;
+
+    var brokenlines;
+
+    function downloadasCSV() {
+        exportPlugin.downloadFile('csv', {
+            filename: 'myFile'
+        });
+    }
+    const PID = 0;
+    const DATE = 1;
+    const VALUE = 3;
+    const SOURCE = 2;
+    const PROVENCANE = 4;
+
+    function coloring(row, row_attr, numberOfCols, color, message, dataElement) {
+        if (row_attr == "ALL") {
+            for (var k = 0; k < numberOfCols; k++) {
+                data[row][k] = "<div class='tooltip' style='background-color:" + color + "' >" + data[row][row_attr] + "<span class='tooltiptext'>" + message + "</span></div>";
+            }
+        } else {
+            data[row][row_attr] = "<div class='tooltip' style='background-color:" + color + "' >" + data[row][row_attr] + "<span class='tooltiptext'>" + message + "</span></div>";
+            console.log(data[row][row_attr]);
+        }
+        return data;
+    }
+
+    function datatableUpload() {
+        $('#reupload').replaceWith("<button id='reupload' class='ui primary loading button'>Saving modified File to Server...</button>");
+        const modifiedFile = exportPlugin.exportAsBlob('csv');
+        const blobFile = new File([modifiedFile], '{{file_name}}');
+        var data = new FormData(); // das ist unser Daten-Objekt ...
+        data.append('file', blobFile);
+        data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        $.ajax({
+            url: "{% url 'ajax_upload_file' %}",
+            type: 'POST',
+            data: data,
+            processData: false,
+            contentType: false,
+            success: function(e) {
+                $('#reupload').hide();
+                document.getElementById('reuploadgo').insertAdjacentHTML('afterbegin', "<input type='hidden' name='file_id' value='" + e['file_id'] + "' >");
+                $('#reuploadgo').css('display', 'inline-block');
+                console.log(e['file_id']);
+            }
+        });
+    }
+    $(document).ready(function() {
+        $.ajax({
+            url: "{% url 'get_broken_lines' %}",
+            type: "GET",
+            success: function(e) {
+                brokenlines = e['brokenlines'];
+                //console.log(brokenlines);
+            }
+        })
+
+        $.ajax({
+            url: "{% url 'get_csv_as_json' %}" + "?file_id=" + "{{ file_id |escapejs }}",
+            type: 'GET',
+            success: function(event) {
+                var datatable = [];
+                var head = Object.keys(event[0])[0].split(';');
+
+
+                console.log(event);
+                var size = Object.keys(event).length;
+
+                // "HTMLerize if there are any broken lines"
+
+                var linekeys = Object.keys(brokenlines);
+                for (var k = 0; k < size; k++) {
+
+                    datatable[k] = Object.values(event[k])[0].split(';');
+
+                    if (brokenlines[k.toString()]) {
+
+                        const line = brokenlines[k].split(";;");
+                        console.log(line);
+                        var row_attr = "ALL";
+                        if (line[3] == "PID") {
+                            row_attr = PID;
+                        }
+                        if (line[3] == "VALUE") {
+                            row_attr = VALUE;
+                        }
+                        if (line[3] == "DATE") {
+                            row_attr = DATE;
+                        }
+                        if (line[3] == "SOURE") {
+                            row_attr = SOURCE;
+                        }
+                        if (line[3] == "PROVENANCE") {
+                            row_attr = PROVENCANE;
+                        }
+                        var numberOfCols = 5;
+                        var color = line[2];
+                        var message = line[0];
+                        if (row_attr == "ALL") {
+                            //console.log("hello2");
+                            for (var l = 0; l < numberOfCols; l++) {
+                                datatable[k][l] = "<div class='tooltip' style='background-color:" + color + "' >" + datatable[k][l] + "<span class='tooltiptext'>" + message + "</span></div>";
+                            }
+                        } else {
+                            //console.log("hello3");
+                            //console.log(datatable[k - 1][parseInt(row_attr)]);
+
+                            datatable[k][parseInt(row_attr)] = "<div class='tooltip' style='background-color:" + color + "' >" + datatable[k][row_attr] + "<span class='tooltiptext'>" + message + "</span></div>";
+                            //console.log(datatable[k - 1][row_attr]);
+                        }
+                    } else {
+                        for (var i = 0; i < datatable[k].length; i++) {
+                            datatable[k][i] = "<p>" + datatable[k][i] + "</p>";
+
+                        }
+                    }
+                }
+
+                // mark broken lines
+                /*
+                linekeys = Object.keys(brokenlines);
+                for (k = 0; k < linekeys.length; k++) {
+                    const line = brokenlines[linekeys[k]].split(";;");
+                    coloring(parseInt(linekeys[k]), line[3], 5, line[2], line[0], datatable);
+                }
+                console.log(datatable);
+*/
+                var container = document.getElementById('datatable');
+                var hot = new Handsontable(container, {
+                    data: datatable,
+                    colHeaders: head,
+
+                    columns: [{
+                        datatable: "PID",
+                        renderer: "html"
+                    }, {
+                        datatable: "DATE",
+                        renderer: "html"
+                    }, {
+                        datatable: "SOURCE",
+                        renderer: "html"
+                    }, {
+                        datatable: "VALUE",
+                        renderer: "html"
+                    }, {
+                        datatable: "PROVENCANE",
+                        renderer: "html"
+                    }],
+
+                    rowHeaders: true,
+                    width: 600,
+
+
+
+
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                $('#loader').hide();
+                $('#download').show();
+                $('#reupload').show();
+                exportPlugin = hot.getPlugin('exportFile');
+
+
+
+
+
+            }
+        });
+
+
+
+    });
+</script>
+{% endblock %}

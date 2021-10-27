@@ -1,0 +1,387 @@
+{% extends 'base-no-messages.html' %}{% block extra_head %}
+<link href="https://cdn.jsdelivr.net/npm/handsontable@7.4.2/dist/handsontable.full.min.css" rel="stylesheet" media="screen"> {% endblock %}{% block content %}
+<div class="ui container fluid" style="margin-top: 5vh">
+
+    <div class="ui floating message">
+        <i class="close icon"></i>
+        <p>Click on the Sheet you want to inspect ! </p>
+    </div>
+
+    <div class="ui grid">
+        <div class="twelve wide column">
+            <div class="ui segment" id="loader">
+                <div class="ui active inverted dimmer">
+                    <div class="ui text loader">Loading handsontable...</div>
+                </div>
+                <p>{{blabla}}</p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+            </div>
+        </div>
+        <div class="twelve wide column" style="display: none;" id="sheets">
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="source">Source</a>
+                <a class="item" data-tab="units">Units</a>
+                <a class="item" data-tab="attributes">Attributes</a>
+                <a class="item" data-tab="codes">Codes</a>
+                <a class="item" data-tab="attribute_mappings">Attribute_Mappings</a>
+                <a class="item" data-tab="code_mappings">Code_Mappings</a>
+                <a class="item" data-tab="calculations">Calculations</a>
+                <a class="item" data-tab="q_r">Q+R</a>
+            </div>
+
+
+            <div class="ui bottom attached tab segment" data-tab="source" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_source" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="units" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_units" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="attributes" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_attributes" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="codes" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_codes" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="attribute_mappings" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_attribute_mappings" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="code_mappings" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_code_mappings" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="calculations" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_calculations" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="q_r" style="min-height: 1000px; width: 100%;">
+                <div id="datatable_q_r" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+
+            </div>
+
+        </div>
+
+        <div class="four wide column" style="overflow-y: scroll;">
+            <h3>Messages received from Importer Backend</h3>
+            <br>
+            <div class="ui floating message">
+                <i class="close icon"></i>
+                <p>{{current_msg}}</p>
+            </div>
+            <br> {% for message in msgs %}
+            <div class="ui floating message">
+                <i class="close icon"></i>
+                <p>{{message}}</p>
+            </div>
+            <br> {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/handsontable@7.4.2/dist/handsontable.full.min.js"></script>
+<script>
+    $('.menu .item')
+        .tab();
+</script>
+
+<script>
+    var brokenlines;
+    var ignoredlines;
+    $(document).ready(function() {
+        $.ajax({
+            url: "{% url 'get_broken_lines_model' %}",
+            type: "GET",
+            success: function(e) {
+                brokenlines = e['brokenlines'];
+                console.log(brokenlines);
+            }
+        })
+        $.ajax({
+            url: "{% url 'get_ignored_lines_model' %}",
+            type: "GET",
+            success: function(e) {
+                ignoredlines = e['ignoredlines'];
+                console.log(ignoredlines);
+            }
+        })
+
+
+        $.ajax({
+            url: "{% url 'get_xlsx_as_json' %}" + "?file_id=" + "{{ file_id |escapejs }}",
+            type: 'GET',
+            success: function(e) {
+                var sheet_source = e['Sources'];
+                var sheet_units = e['Units'];
+                var sheet_attributes = e['Attributes'];
+                var sheet_codes = e['Codes'];
+                var sheet_attribute_mappings = e['Attribute_Mappings'];
+                var sheet_code_mappings = e['Code_Mappings'];
+                var sheet_calculations = e['Calculations'];
+                var sheet_q_r = e['Questions+Remarks'];
+                const head_source = Object.keys(sheet_source[0]);
+                const head_units = Object.keys(sheet_units[0]);
+                const head_attributes = Object.keys(sheet_attributes[0]);
+                const head_codes = Object.keys(sheet_codes[0]);
+                const head_attribute_mappings = Object.keys(sheet_attribute_mappings[0]);
+                const head_code_mappings = Object.keys(sheet_code_mappings[0]);
+                const head_calculations = Object.keys(sheet_calculations[0]);
+                const head_q_r = Object.keys(sheet_q_r[0]);
+                const datatable_source = []
+                const datatable_units = []
+                const datatable_attributes = []
+                const datatable_codes = []
+                const datatable_attribute_mappings = []
+                const datatable_code_mappings = []
+                const datatable_calculations = []
+                const datatable_q_r = []
+
+                //console.log(head_source);
+
+                for (var i = 0; i < Object.keys(sheet_source).length; i++) {
+                    datatable_source[i] = Object.values(sheet_source[i]);
+                    //console.log(brokenlines['Sources']);
+
+                    for (var k = 0; k < head_source.length; k++) {
+                        if (brokenlines['Sources'][head_source[k]]) {
+                            var array_assigned = brokenlines['Sources'][head_source[k]]['assigned'] || [];
+                            var array_dublicate = brokenlines['Sources'][head_source[k]]['duplicate'] || [];
+                            var array_length = brokenlines['Sources'][head_source[k]]['length'] || [];
+                            var concat = array_assigned.concat(array_dublicate);
+
+                            if (concat.indexOf(i) >= 0) {
+                                datatable_source[i][k] = "<p style='background-color: #ff211a'>" + datatable_source[i][k] + "</p>";
+                            }
+                            if (ignoredlines['Sources'].indexOf(i) >= 0) {
+                                datatable_source[i][k] = "<p style='background-color: ##e0e0e0'>" + datatable_source[i][k] + "</p>"
+                            } else {
+                                datatable_source[i][k] = "<p style='background-color: #d2f8d2'>" + datatable_source[i][k] + "</p>";
+                            }
+                        }
+                    }
+
+
+
+                }
+                for (var i = 0; i < Object.keys(sheet_units).length; i++) {
+                    datatable_units[i] = Object.values(sheet_units[i]);
+
+                    for (var k = 0; k < head_units.length; k++) {
+                        if (brokenlines['Units'][head_units[k]]) {
+                            var array_assigned = brokenlines['Units'][head_units[k]]['assigned'] || [];
+                            var array_dublicate = brokenlines['Units'][head_units[k]]['duplicate'] || [];
+                            var array_length = brokenlines['Units'][head_units[k]]['length'] || [];
+                            var concat = array_assigned.concat(array_dublicate);
+
+                            if (concat.indexOf(i) >= 0) {
+                                datatable_units[i][k] = "<p style='background-color: #ff211a'>" + datatable_units[i][k] + "</p>";
+                            }
+                            if (ignoredlines['Units'].indexOf(i) >= 0) {
+                                datatable_units[i][k] = "<p style='background-color: #e0e0e0'>" + datatable_units[i][k] + "</p>"
+                            } else {
+                                datatable_units[i][k] = "<p style='background-color: #d2f8d2'>" + datatable_units[i][k] + "</p>";
+                            }
+                        }
+                    }
+                }
+                for (var i = 0; i < Object.keys(sheet_attributes).length; i++) {
+                    datatable_attributes[i] = Object.values(sheet_attributes[i]);
+
+                    for (var k = 0; k < head_attributes.length; k++) {
+                        if (brokenlines['Attributes'][head_attributes[k]]) {
+                            var array_assigned = brokenlines['Attributes'][head_attributes[k]]['assigned'] || [];
+                            var array_dublicate = brokenlines['Attributes'][head_attributes[k]]['duplicate'] || [];
+                            var array_length = brokenlines['Attributes'][head_attributes[k]]['length'] || [];
+                            var concat = array_assigned.concat(array_dublicate);
+
+                            if (concat.indexOf(i) >= 0) {
+                                datatable_attributes[i][k] = "<p style='background-color: #ff211a'>" + datatable_attributes[i][k] + "</p>";
+                            }
+                            if (ignoredlines['Attributes'].indexOf(i) >= 0) {
+                                datatable_attributes[i][k] = "<p style='background-color: #e0e0e0'>" + datatable_attributes[i][k] + "</p>"
+                            } else {
+                                datatable_attributes[i][k] = "<p style='background-color: #d2f8d2'>" + datatable_attributes[i][k] + "</p>";
+                            }
+                        }
+                    }
+                }
+                for (var i = 0; i < Object.keys(sheet_codes).length; i++) {
+                    datatable_codes[i] = Object.values(sheet_codes[i]);
+
+                    for (var k = 0; k < head_codes.length; k++) {
+                        if (brokenlines['Codes'][head_codes[k]]) {
+                            //console.log(head_codes[k]);
+                            var array_assigned = brokenlines['Codes'][head_codes[k]]['assigned'] || [];
+                            var array_dublicate = brokenlines['Codes'][head_codes[k]]['duplicate'] || [];
+                            var array_length = brokenlines['Codes'][head_codes[k]]['length'] || [];
+                            var concat = array_assigned.concat(array_dublicate);
+
+                            if (concat.indexOf(i) >= 0) {
+                                datatable_codes[i][k] = "<p style='background-color: #ff211a'>" + datatable_codes[i][k] + "</p>";
+                            }
+                            if (ignoredlines['Codes'].indexOf(i) >= 0) {
+                                datatable_codes[i][k] = "<p style='background-color: #e0e0e0'>" + datatable_codes[i][k] + "</p>"
+                            } else {
+                                datatable_codes[i][k] = "<p style='background-color: #d2f8d2'>" + datatable_codes[i][k] + "</p>";
+                            }
+                        }
+                    }
+                }
+                for (var i = 0; i < Object.keys(sheet_attribute_mappings).length; i++) {
+                    datatable_attribute_mappings[i] = Object.values(sheet_attribute_mappings[i]);
+
+                    for (var k = 0; k < head_attribute_mappings.length; k++) {
+                        if (brokenlines['Attribute_Mappings'][head_attribute_mappings[k]]) {
+                            var array_assigned = brokenlines['Attribute_Mappings'][head_attribute_mappings[k]]['assigned'] || [];
+                            var array_dublicate = brokenlines['Attribute_Mappings'][head_attribute_mappings[k]]['duplicate'] || [];
+                            var array_length = brokenlines['Attribute_Mappings'][head_attribute_mappings[k]]['length'] || [];
+                            var concat = array_assigned.concat(array_dublicate);
+
+                            if (concat.indexOf(i) >= 0) {
+                                datatable_attribute_mappings[i][k] = "<p style='background-color: #ff211a'>" + datatable_attribute_mappings[i][k] + "</p>";
+                            }
+                            if (ignoredlines['Attribute_Mappings'].indexOf(i) >= 0) {
+                                datatable_attribute_mappings[i][k] = "<p style='background-color: #e0e0e0'>" + datatable_attribute_mappings[i][k] + "</p>"
+                            } else {
+                                datatable_attribute_mappings[i][k] = "<p style='background-color: #d2f8d2'>" + datatable_attribute_mappings[i][k] + "</p>";
+                            }
+                        }
+                    }
+                }
+                for (var i = 0; i < Object.keys(sheet_code_mappings).length; i++) {
+                    datatable_code_mappings[i] = Object.values(sheet_code_mappings[i]);
+
+                    for (var k = 0; k < head_code_mappings.length; k++) {
+                        if (brokenlines['Code_Mappings'][head_code_mappings[k]]) {
+                            var array_assigned = brokenlines['Code_Mappings'][head_code_mappings[k]]['assigned'] || [];
+                            var array_dublicate = brokenlines['Code_Mappings'][head_code_mappings[k]]['duplicate'] || [];
+                            var array_length = brokenlines['Code_Mappings'][head_code_mappings[k]]['length'] || [];
+                            var concat = array_assigned.concat(array_dublicate);
+
+                            if (concat.indexOf(i) >= 0) {
+                                datatable_code_mappings[i][k] = "<p style='background-color: #ff211a'>" + datatable_code_mappings[i][k] + "</p>";
+                            }
+                            if (ignoredlines['Code_Mappings'].indexOf(i) >= 0) {
+                                datatable_code_mappings[i][k] = "<p style='background-color: #e0e0e0'>" + datatable_code_mappings[i][k] + "</p>"
+                            } else {
+                                datatable_code_mappings[i][k] = "<p style='background-color: #d2f8d2'>" + datatable_code_mappings[i][k] + "</p>";
+                            }
+                        }
+                    }
+                }
+                for (var i = 0; i < Object.keys(sheet_calculations).length; i++) {
+                    datatable_calculations[i] = Object.values(sheet_calculations[i]);
+
+                }
+                for (var i = 0; i < Object.keys(sheet_q_r).length; i++) {
+                    datatable_q_r[i] = Object.values(sheet_q_r[i]);
+
+                }
+
+
+                var container_source = document.getElementById('datatable_source');
+                var hot_source = new Handsontable(container_source, {
+                    data: datatable_source,
+                    colHeaders: head_source,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+
+                var container_units = document.getElementById('datatable_units');
+                var hot_units = new Handsontable(container_units, {
+                    data: datatable_units,
+                    colHeaders: head_units,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                var container_attributes = document.getElementById('datatable_attributes');
+                var hot_attributes = new Handsontable(container_attributes, {
+                    data: datatable_attributes,
+                    colHeaders: head_attributes,
+                    renderer: 'html',
+
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                var container_codes = document.getElementById('datatable_codes');
+                var hot_codes = new Handsontable(container_codes, {
+                    data: datatable_codes,
+                    colHeaders: head_codes,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                var container_attribute_mappings = document.getElementById('datatable_attribute_mappings');
+                var hot_attribute_mappings = new Handsontable(container_attribute_mappings, {
+                    data: datatable_attribute_mappings,
+                    colHeaders: head_attribute_mappings,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                var container_code_mappings = document.getElementById('datatable_code_mappings');
+                var hot_code_mappings = new Handsontable(container_code_mappings, {
+                    data: datatable_code_mappings,
+                    colHeaders: head_code_mappings,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                var container_calculations = document.getElementById('datatable_calculations');
+                var hot_calculations = new Handsontable(container_calculations, {
+                    data: datatable_calculations,
+                    colHeaders: head_calculations,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+                var container_q_r = document.getElementById('datatable_q_r');
+                var hot_q_r = new Handsontable(container_q_r, {
+                    data: datatable_q_r,
+                    colHeaders: head_q_r,
+
+                    renderer: 'html',
+                    width: 1200,
+                    rowHeaders: true,
+                    licenseKey: "non-commercial-and-evaluation",
+                });
+
+                $('#loader').hide();
+                $('#sheets').show();
+                hot_source.render();
+                hot_units.render();
+                hot_attributes.render();
+                hot_codes.render();
+                hot_attribute_mappings.render();
+                hot_code_mappings.render();
+                hot_calculations.render();
+                hot_q_r.render();
+
+            }
+
+        })
+    })
+</script>
+{% endblock %}

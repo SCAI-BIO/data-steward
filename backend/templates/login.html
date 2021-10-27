@@ -1,0 +1,101 @@
+{% extends 'base-template.html' %}{% block content %}
+<div class="ui container">
+    <div id="login" >
+    <form id="login_form" class="ui form" method="POST" action="/clinical-backend/login/">
+        {% csrf_token %}
+
+        <div class="three">
+            <div class="field">
+                <label>Username (E-Mail)</label>
+                <input type="text" name="username" id="username" placeholder="Your username">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" id="password" placeholder="You Password">
+            </div>
+            <input id="redirect" name="redirect" style="display: none" />
+            <button class="ui button right floated" type="submit">Submit</button>
+        </div>
+    </form>
+    <button class="ui button blue floated" id="to_register" type="button">Go to Register</button>
+    </div>
+    <div id="register" style="display: none;">
+        <form id="register_form" class="ui form" method="POST" action="/clinical-backend/register/">
+            {% csrf_token %}
+
+            <div class="five">
+                <div class="field">
+                    <label>E-Mail (Username)</label>
+                    <input type="text" name="username" required id="username" placeholder="you@example.com">
+                    
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" required name="password1" id="password1">
+                    <p style="color: red; display: none" id="warn_message">Passwords do not match!</p>
+                    
+                </div>
+                <div class="field">
+                    <label>repeat password</label>
+                    <input type="password" required name="password2" id="password2">
+                    
+                </div>
+                <div class="field">
+                    <label>Affiliation</label>
+                    <input type="text" required name="affiliation" id="affiliation">
+                    
+                </div>
+                <div class="field">
+                    <label>How do youplan to use the IDSN Data Steward?</label>
+                    <textarea name="reason" required></textarea>
+                    
+                </div>
+            
+
+            </div>
+            <button class="ui button right floated" id="register_btn" type="submit">Submit</button>
+
+        </form>
+        <button class="ui button blue floated" id="to_login" type="button">Go to Login</button>
+
+
+    </div>
+
+
+</div>
+
+{% endblock content %}
+{% block extra_js %}
+<script>
+    $(document).ready(function (e) {
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        var next = urlParams.get('next');
+        
+        
+        document.getElementById('redirect').value = next;
+
+        document.getElementById("password2").onchange = function(){
+            if(this.value != document.getElementById("password1").value){
+                document.getElementById("register_btn").disabled = true;
+                document.getElementById("warn_message").style.display = "block";
+            }
+            else{
+                document.getElementById("register_btn").disabled = false;
+                document.getElementById("warn_message").style.display = "none";
+            }
+        }
+
+        document.getElementById("to_login").onclick = function(){
+            document.getElementById('register').style.display = 'none';
+            document.getElementById('login').style.display = 'block';
+        }
+        document.getElementById('to_register').onclick = function(){
+            document.getElementById('register').style.display = 'block';
+            document.getElementById('login').style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

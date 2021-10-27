@@ -1,0 +1,52 @@
+{% extends 'base-template.html' %}{% load static %} {% block content %}
+<div class="ui container" style="margin-bottom: 10vh">
+    <div class="ui placeholder segment">
+        <div class="ui icon header">
+            <i class="cloud upload icon"></i>Upload a Datamodel
+        </div>
+        <div class="inline">
+            <a href="{% url 'upload_datamodel' %}" class="ui primary button">Go to Datamodel Upload</a>
+
+        </div>
+    </div>
+    <br>
+    <div class="ui placeholder segment">
+        <div class="ui icon header">
+            <i class="cloud upload icon"></i> Upload Datapoints
+        </div>
+        <div class="inline">
+            <a href="{% url 'upload_data' %}" class="ui primary button">Go to Datapoints Upload</a>
+
+        </div>
+    </div>
+    <br>
+    <div class="ui placeholder segment">
+        <div class="ui icon header">
+            <i class="search icon"></i> Query an API
+        </div>
+        <div class="inline">
+            <div class="ui relaxed divided list">
+                {% for api in apis %}
+                <div class="item popup" data-content="{{api.2}}">
+                    <i class="cog icon large" ></i>
+                    <div class="content">
+                      <div class="description">{{api.0}}</div>
+                        <a href="{{ api.1 }}" class="header">Go to Endpoint</a>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block extra_js %}
+
+<script>
+$('.popup').popup();
+</script>
+{% endblock %}

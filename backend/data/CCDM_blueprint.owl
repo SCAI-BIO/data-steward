@@ -1,0 +1,663 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://scai.fraunhofer.de/idsn/ccdm#"
+     xml:base="https://scai.fraunhofer.de/idsn/ccdm"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="https://scai.fraunhofer.de/idsn/ccdm">
+        <rdfs:comment xml:lang="en">The offical Clinical Common Datamodel Ontology</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_code_key_value_pair -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_code_key_value_pair">
+        <rdfs:domain rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Code"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_description -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_description">
+        <rdfs:label xml:lang="en">has_description</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_formula -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_formula"/>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_range -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_range"/>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_source_value -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_source_value"/>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_source_variable -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_source_variable">
+        <rdfs:label xml:lang="de">has_source_variable</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_target_equivalent -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_target_equivalent"/>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_tooltip -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_tooltip">
+        <rdfs:label xml:lang="de">has_tooltip</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_topic_description -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_topic_description">
+        <rdfs:label xml:lang="de">has_topic_description</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#is_UCUM -->
+
+    <owl:AnnotationProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#is_UCUM">
+        <rdfs:label xml:lang="de">is_UCUM</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2 -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">relational_property</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_code -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_code">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_code_mapping -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_code_mapping">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_domain -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_domain">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has_domain</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_location -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_location">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#measurement_variable"/>
+        <rdfs:range rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#location"/>
+        <rdfs:comment xml:lang="en">WHERE</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_method -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_method">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment xml:lang="en">HOW</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_observation -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_observation">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment xml:lang="en">WHAT</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_source -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_source">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="de">has_source</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_target_variable -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_target_variable">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has_target_variable</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_topic -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_topic">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">has_topic</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_umbrella -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_umbrella">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="de">has_umbrella</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_unit -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_unit">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has_unit</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#is_domain_of_code -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#is_domain_of_code">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#is_measurement -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#is_measurement">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#maps_to -->
+
+    <owl:ObjectProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#maps_to">
+        <rdfs:subPropertyOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#OWLObjectProperty_69bf956a_e673_43b6_9f76_deba0c28d8c2"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#has_datatype -->
+
+    <owl:DatatypeProperty rdf:about="https://scai.fraunhofer.de/idsn/ccdm#has_datatype"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Ataxia -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Ataxia">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">Ataxia</rdfs:label>
+        <has_description xml:lang="en">Ataxia-related special measurements</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Blood -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Blood">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">Blood</rdfs:label>
+        <has_description xml:lang="en">Laboratory measurements in blood</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#CSF -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#CSF">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">CSF</rdfs:label>
+        <has_description xml:lang="en">Laboratory measurements in cerebral spine fluid</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Code -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Code">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Core_entity"/>
+        <rdfs:label xml:lang="de">Code</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Code_mapping -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Code_mapping">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Mapping_entity"/>
+        <rdfs:comment xml:lang="en">The unique uri has the format: {CODE-MAPPING-ID}_({PREIMAGE-OF-MAPPING})</rdfs:comment>
+        <rdfs:label xml:lang="de">Code_mapping</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Core_entity -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Core_entity">
+        <rdfs:label xml:lang="de">Core_entity</rdfs:label>
+        <has_description xml:lang="en">Core entities are those that are indipentent of any mappings.</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Disturbances -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Disturbances">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">Disturbances</rdfs:label>
+        <has_description xml:lang="en">Qualifiable neuropsychological disturbances</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#External_variable -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#External_variable">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Mapping_entity"/>
+        <rdfs:label xml:lang="en">External Variable</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Independent_entity -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Independent_entity">
+        <rdfs:label xml:lang="en">Independent_entity</rdfs:label>
+        <has_description xml:lang="en">Indipendant entities are those that dont reference any other entitiy via an object property (ontology) or foreign key (database).
+These entities are referenced by others.</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Mapping_entity -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Mapping_entity">
+        <rdfs:label xml:lang="de">Mapping_entity</rdfs:label>
+        <has_description xml:lang="en">Mapping entities describe all mappings (codeand variable) in the common datamodel.</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Motor_testings -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Motor_testings">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">Motor_testings</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#NPT -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#NPT">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="de">NPT</rdfs:label>
+        <has_description xml:lang="en">Neuropsychological test scores</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#OWLClass_a335afeb_84df_4f93_ba76_32ab6a520654 -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#OWLClass_a335afeb_84df_4f93_ba76_32ab6a520654">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#has_location"/>
+                        <owl:allValuesFrom rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#skin"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#has_method"/>
+                        <owl:allValuesFrom rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#biopsy"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#has_observation"/>
+                        <owl:allValuesFrom rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#carzynogene_cells"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#measurement_variable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#has_datatype"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#real"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">carzynogene_cells@skin|biopsy</rdfs:label>
+        <has_range xml:lang="en">[0:100]</has_range>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#SARA -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#SARA">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Motor_testings"/>
+        <rdfs:label xml:lang="de">SARA</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#SARA_scores -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#SARA_scores">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#SARA"/>
+        <rdfs:label xml:lang="en">SARA scores</rdfs:label>
+        <has_description xml:lang="en">Scale for the assessment and rating of ataxia (SARA) - Scores</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#SARA_subscores -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#SARA_subscores">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#SARA_scores"/>
+        <rdfs:label xml:lang="en">SARA subscores</rdfs:label>
+        <has_description xml:lang="en">Scale for the assessment and rating of ataxia (SARA) - Subscores</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#SCA_characterization -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#SCA_characterization">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="en">SCA CHARACTERIZATION</rdfs:label>
+        <has_description xml:lang="en">Ataxia-related special measurements</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Source -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Source">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Mapping_entity"/>
+        <rdfs:label xml:lang="de">Source</rdfs:label>
+        <has_description xml:lang="en">Sources that are references in a variable mapping.</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Topic -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Topic">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Independent_entity"/>
+        <rdfs:label xml:lang="en">Topic</rdfs:label>
+        <has_description xml:lang="en">Topics that provide a top level classification of variables.</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Umbrella_term -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Umbrella_term">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Independent_entity"/>
+        <rdfs:label xml:lang="de">Umbrella_term</rdfs:label>
+        <rdfs:seeAlso xml:lang="en">https://en.wiktionary.org/wiki/umbrella_term</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Unit -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Unit">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Core_entity"/>
+        <rdfs:label xml:lang="de">Unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#Variable -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#Variable">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Core_entity"/>
+        <rdfs:label xml:lang="en">Variable</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#biopsy -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#biopsy">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#method"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#carzynogene_cells -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#carzynogene_cells">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#medical_anomaly"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#chemical_entity -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#chemical_entity">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#observation"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#datatype -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#datatype">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Independent_entity"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#induced_variable -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#induced_variable">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Variable"/>
+        <has_description xml:lang="en">A variable that is only defined by the axioms it suffies.</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#location -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#location">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#measurement_entity"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#master -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#master">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Topic"/>
+        <rdfs:label xml:lang="en">master</rdfs:label>
+        <has_description xml:lang="en">Singular patient information</has_description>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#measurement_entity -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#measurement_entity">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#Independent_entity"/>
+        <rdfs:label xml:lang="en">Measurement entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#measurement_variable -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#measurement_variable">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#induced_variable"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#medical_anomaly -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#medical_anomaly">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#observation"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#method -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#method">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#measurement_entity"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#observation -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#observation">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#measurement_entity"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#report -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#report">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#observation"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#skin -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#skin">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#location"/>
+    </owl:Class>
+    
+
+
+    <!-- https://scai.fraunhofer.de/idsn/ccdm#test_result -->
+
+    <owl:Class rdf:about="https://scai.fraunhofer.de/idsn/ccdm#test_result">
+        <rdfs:subClassOf rdf:resource="https://scai.fraunhofer.de/idsn/ccdm#observation"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

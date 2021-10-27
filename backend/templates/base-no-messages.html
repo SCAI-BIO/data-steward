@@ -1,0 +1,67 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/clinical.css' %}">
+    <title>{{title}}</title>
+    {% block extra_head %} {% endblock %}
+</head>
+
+<body>
+    <div class="ui pointing  menu">
+        <a href="{% url 'upload_data' %}" class="item">
+          Data Upload
+        </a>
+        <a href="{% url 'upload_datamodel' %}" class="item">
+          Data Model Upload
+        </a>
+        <a href="/upload/handsontable" class="item">
+          Handsonboard
+        </a>
+        <a href="{% url 'import_pkl' %}" class="item">
+            Pickle Upload
+        </a>
+        <!--
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    -->
+    </div>
+    <!--
+    {% for message in messages %}
+    <div class="ui container">
+        <div class="ui {{ message.tags }} message">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+    {% endfor %} 
+-->
+    {% block content %}{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script>
+        $('.message .close')
+            .on('click', function() {
+                $(this)
+                    .closest('.message')
+                    .transition('fade');
+            });
+    </script>
+    {% block extra_js %} {% endblock %}
+</body>
+
+
+</html>

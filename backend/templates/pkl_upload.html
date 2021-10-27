@@ -1,0 +1,10 @@
+{% extends 'base-template.html' %}{% block content %}
+<div class="ui container">
+  <h3>Upload a .pkl File</h3>
+  <form action="" method="POST">
+    {% csrf_token %}
+  <div class="ui input focus">
+  <input type="file" name="file" placeholder="upload .pkl file...">
+</div>
+  </div>
+{% endblock %}

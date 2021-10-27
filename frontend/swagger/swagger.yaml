@@ -1,0 +1,209 @@
+swagger: "2.0"
+info:
+  description: "This is the official API documentation for the Fraunhofer SCAI Data Steward."
+  version: "1.0.0"
+  title: "Data Steward API"
+  contact:
+    email: "philipp.wegner@scai.fraunhofer.de"
+#host: "data-steward.bio.scai.fraunhofer.de"
+host: "localhost:8000"
+basePath: "/clinical-backend/api-steward/"
+tags:
+- name: "Attributes"
+  description: "Everything about the Variables/Attributes used in the current Data Model"
+- name: "Data"
+  description: "Query patient data"
+- name: "Mappings"
+  description: "Everything about Variable/Attribute mappings used in the current Data Model"
+schemes:
+- "https"
+- "http"
+paths:
+
+
+  /get/attributes/all:
+    get:
+      tags:
+      - "Attributes"
+      summary: "Get all attributes"
+      description: ""
+      operationId: "allAttributes"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successfull operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Attribute"
+    
+    
+  /get/sources/all:
+    get:
+      tags:
+      - "Attributes"
+      summary: "Get all sources"
+      description: "Every attribute in the model comes from a certain source hence the model holds infomation about varous data sources that can be queried here."
+      operationId: "allSources"
+      produces:
+   
+      - "application/json"
+  
+      
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Source"
+              
+  /get/attribute-mappings/all:
+    get:
+      tags:
+        - "Mappings"
+      summary: "Get all attribute mappings"
+      description: "A mapping consists of an external and internal variable. A mapping can have some kind of transformation e.g. mg --> g"
+      operationId: "allMappings"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successfull operation"
+          schema: 
+            type: "array"
+            items:
+              $ref: "#/definitions/Mapping"
+              
+  /get/attribute:
+    get:
+      tags:
+        - "Attributes"
+      summary: "Get a specific attribute"
+      description: "Query a specific attribute or source currently presentin the data model. Multiple results are possible."
+      produces:
+        - "application/json"
+      parameters:
+      - name: "node"
+        in: "query"
+        description: "The attributes name or its tooltip."
+        required: true
+        type: "string"
+      - name: "type"
+        in: "query"
+        description: "Specify if you want to query sources or attributes. Attributes of type is not specified."
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "successfull operation but array can be empty if the query returend no attribute."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Attribute"
+            
+    
+  /get/fulltext:
+    get:
+      tags:
+        - "Attributes"
+      summary: "Search for attributes"
+      description: "This API seaches in names, tooltips and description texts of attributes"
+      operationId: "fulltextSearch"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "text"
+        in: "query"
+        description: "The attributes name, tooltip or description"
+        required: true
+        type: "string"
+     
+      responses:
+        "200":
+          description: "successfull operation"
+          schema: 
+            type: "array"
+            items:
+              $ref: "#/definitions/Attribute"
+  /get/data/all:
+    get:
+      tags: 
+        - "Data"
+      summary: "Get all available and mapped patient data"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successfull operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Datapoint"
+  /get/data/attribute:
+    get:
+      tags:
+        - "Data"
+      summary: "Query all available and mapped patient data with a specific attribute"
+      produces:
+        - "application/json"
+      parameters:
+      - name: "attribute"
+        in: "query"
+        description: "The attributes name"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successfull operation"
+          schema: 
+            type: "array"
+            items:
+              $ref: "#/definitions/Datapoint"
+              
+        
+    
+  
+definitions:
+  Datapoint:
+    type: "object"
+    properties:
+      variableExternal:
+        type: "string"
+      variableMapped:
+        type: "string"
+      value :
+        type: "string"
+      patientId :
+        type: "string"
+      timestamp:
+        type: "string"
+  Mapping: 
+    type: "object"
+    properties:
+      Source:
+        type: "string"
+      name:
+        type: "string"
+      Target:
+        type: "string"
+      TargetDescription:
+        type: "string"
+      Transformation:
+        type: "string"
+      
+
+  Source:
+    type: "string"
+  Attribute:
+    type: "object"
+    properties:
+      topic:
+        type: "string"
+      name: 
+        type: "string"
+      tooltip:
+        type: "string"
+      description: 
+        type: "string"

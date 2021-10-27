@@ -1,0 +1,21 @@
+{% extends 'base-template.html' %} {% block content %}
+<div class="ui container">
+    <h1 class="ui header">{{header}}</h1>
+</div>
+
+{% if form.errors %}
+<p style="color: red;">
+    Please correct the error{{ form.errors|pluralize }} below.
+</p>
+{% endif %}
+<div class="ui container">
+    <form action="" class="ui form" enctype="multipart/form-data" method="post">
+        {{info}}
+        <table class="ui celled table">
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <input type="submit" class="ui primary button right floated" value="Upload now">
+    </form>
+</div>
+{% endblock %}

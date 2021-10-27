@@ -1,0 +1,54 @@
+{% extends 'base-template.html' %}{% block content %}
+<div class="ui container">
+    <h1 class="ui header">{{header}}</h1>
+</div>
+
+{% if form.errors %}
+<p style="color: red;">
+    Please correct the error{{ form.errors|pluralize }} below.
+</p>
+{% endif %}
+<div class="ui container">
+    <form class="ui form" action="" enctype="multipart/form-data" method="post" id="uploadform">
+        {{info}}
+        <table class="ui celled table">
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <input type="submit" class="ui primary button right floated" value="Upload now">
+    </form>
+</div>
+{% endblock %} {% block extra_js %}
+<!--
+<script>
+    function loaddata(event) {
+        var formData = new FormData($('.ui .form'));
+        console.log(formData);
+        $.ajax({
+            url: "/upload/data/",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function(e) {
+                console.log(e);
+            }
+
+        });
+    }
+</script>
+-->
+<script>
+    $(document).ready(function(e) {
+        const now = new Date();
+        const secondsSinceEpoch = Math.round(now.getTime() / 1000);
+        const pid = secondsSinceEpoch;
+        $('<input>', {
+            type: 'hidden',
+            id: 'pid',
+            name: 'pid',
+            value: pid,
+        }).appendTo('#uploadform');
+    });
+</script>
+{% endblock %}

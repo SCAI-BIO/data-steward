@@ -1,0 +1,277 @@
+Internal Variable;Internal Description;OMOP variable;OMOP id;OMOP code
+SEX;Sex;Sex;35810091;31
+DOB;Date of birth;Date of birth;4083587;184099003
+AGE_FV;Age at first visit;TIME TO FIRST VISIT AT HEALTH FACILITY;45922634;1769
+APOE_GENOTYPE;ApoE genotype (allele pattern);APOE gene;40786119;LP32794-7
+APOE_RISK_GROUP;ApoE-induced risk level;Risk level;1003820;LP100247-8
+EDU_YEARS;Education years;Education;4254480;409073007
+MARRIED;Marriage status;Marriage;40299680;138144003
+DOFV;Date of first visit;Date of first visit;1013090;LP188961-9
+DIAG_ICD10;Diagnosis (ICD10-encoded);Diagnosis;4234469;439401001
+DIAG_TXT;Diagnosis (free text);Diagnosis;4234469;439401001
+DEM_FA;Indicates whether the patient's father suffered from dementia;Father Nervous Condition: Dementia;43528611;FatherNervousCondition_Dementia
+DEM_MO;Indicates whether the patient's mother suffered from dementia;Mother Nervous Condition: Dementia;43528613;MotherNervousCondition_Dementia
+BNT_15_SUM_Z;"Boston naming Test (15 items; z-value)";Boston naming test;4164808;273330005
+CERAD_CP_Z;Constructional praxis - direct (z-value);;;
+CERAD_CPR_Z;Constructional praxis - delayed (z-value);;;
+CERAD_CPSAV_Z;Constructional praxis - savings (z-value);;;
+CERAD_WLDIS_Z;Word List - Discriminability (z-value);;;
+CERAD_WLRAI_Z;Word List - Recall after interference (z-value);;;
+CERAD_WLINT_Z;Word List - Intrusions (z-value);;;
+CERAD_WLLSUM_Z;Word List learning total (z-value);;;
+CERAD_WLL1ST_Z;Word List learning 1st trial (z-value);;;
+CERAD_WLL2ND_Z;Word List learning 2nd trial (z-value);;;
+CERAD_WLL3RD_Z;Word List learning 3rd trial (z-value);;;
+CERAD_WLLSAV_Z;Word List learning savings (z-value);;;
+MMSE_SUM_Z;Mini Mental State Examination (z-value);Mini-mental state examination score;40491929;447316007
+VFP_Z;Verbal fluency phon. (z-value);Fluency of speech;4239444;363921007
+TMT_A_TIME_Z;"Trail Making Test - Part A (time required, z-value; acc. to Reitan 1955)";Trail making test;4165596;273882000
+TMT_B_TIME_Z;"Trail Making Test - Part B (time required, z-value; acc. to Reitan 1955)";Trail making test;4165596;273882000
+TMT_BA_RATIO_Z;"Trail Making Test - Part B/A ratio (z-value; acc. to Arbuthnott & Frank 2000)";;;
+VFC_ANIM_Z;Verbal fluency cat. (animals) z-value);Fluency of speech;4239444;363921007
+VFC_FOOD_Z;Verbal fluency cat. (food) (z-value);Fluency of speech;4239444;363921007
+BNT_30_SUM;"Boston Naming Test (30 items; raw value)";Boston naming test;4164808;273330005
+BNT_15_SUM;"Boston Naming Test (15 items; raw value)";Boston naming test;4164808;273330005
+CERAD_CP_R;Constructional praxis - direct (raw value);;;
+CERAD_CPR_R;Constructional praxis - delayed (raw value);;;
+CERAD_CPSAV_R;Constructional praxis - savings (raw value);;;
+CERAD_WLDIS_R;Word List - Discriminability (raw value);;;
+CERAD_WLRAI_R;Word List - Recall after interference raw value);;;
+CERAD_WLINT_R;Word List - Intrusions (raw value);;;
+CERAD_WLLSUM_R;Word List learning total (raw value);;;
+CERAD_WLL1ST_R;Word List learning 1st trial (raw value);;;
+CERAD_WLL2ND_R;Word List learning 2nd trial (raw value);;;
+CERAD_WLL3RD_R;Word List learning 3rd trial (raw value);;;
+CERAD_WLLSAV_R;Word List learning savings (raw value);;;
+MMSE_ATT_CALC;Attention & Calculation: Word Reversal OR Counting Backwards Score (Mini Mental State Examination);Mini-mental state examination score;40491929;447316007
+MMSE_LNG;Naming test: pencil, watch (Mini Mental State Examination);Mini-mental state examination score;40491929;447316007
+MMSE_MEM;Memory test: delayed recall ball/flag/tree (Mini Mental State Examination);Mini-mental state examination score;40491929;447316007
+MMSE_ORI;Orientation: place and time (Mini Mental State Examination);Mini-mental state examination score;40491929;447316007
+MMSE_WMR;Memory test: working memory registration / immediate recall ball/flag/tree (Mini Mental State Examination);Mini-mental state examination score;40491929;447316007
+MMSE_SUM_R;Summary score Mini Mental State Examination (raw value);Mini mental state score;40491929;447316007
+VFP_R;Verbal fluency phon. (raw value);Fluency of speech;4239444;363921007
+TMT_A_TIME;"Trail Making Test - Part A (time required; acc .to Reitan 1955)";Trail making test;4165596;273882000
+TMT_A_E_COMMIT;"Trail Making Test - Part A (commit errors; acc. to Correia et al. 2015)";Trail making test;4165596;273882000
+TMT_A_E_OMIT;"Trail Making Test - Part A (omit errors; acc. to Correia et al. 2015)";Trail making test;4165596;273882000
+TMT_B_TIME;"Trail Making Test - Part B (raw value; acc .to Reitan 1955)";Trail making test;4165596;273882000
+TMT_B_E_COMMIT;"Trail Making Test - Part B (commit errors; acc. to Correia et al. 2015)";Trail making test;4165596;273882000
+TMT_B_E_OMIT;"Trail Making Test - Part B (omit errors; acc. to Correia et al. 2015)";Trail making test;4165596;273882000
+TMT_BA_TIME_RATIO;Trail Making Test - Part B/A ratio (acc. to Arbuthnott & Frank 2000);Trail making test;4165596;273882000
+VFC_ANIM_R;Verbal fluency cat. (animals) (raw value);Fluency of speech;4239444;363921007
+VFC_FOOD_R;Verbal fluency cat. (food) (raw value);Fluency of speech;4239444;363921007
+CDR_SOB;Clinical Dementia Rating Scale Sum of Boxes (CDR-SOB);Clinical Dementia Rating Scale;1011939;LP156476-6
+CDR_SUM;Global Clinical Dementia Rating Scale;Clinical Dementia Rating Scale;1011939;LP156476-6
+ADAS_COG_11;"Alzheimer’s Disease Assessment Scale - Cognitive (classic, 11 items; Rosen et al. 1984)";Alzheimer's Disease Assessment Scale;4157231;273269001
+ADAS_COG_13;"Alzheimer’s Disease Assessment Scale - Cognitive (modified, 13 items; Mohs et al. 1997)";Alzheimer's Disease Assessment Scale;4157231;273269001
+MOCA;Montreal Cognitive Assessment;Montreal Cognitive Assessment;1011981;LP156676-1
+GDS_30;"Geriatric Depression Scale (30 items; Yesavage et al. 1982)";Geriatric depression scale;4159706;273481004
+GDS_15;"Geriatric Depression Scale (15 items; Sheik & Yesavage 1986)";Geriatric depression scale;4159706;273481004
+NPI_TOTAL;Neuropsychiatric Inventory - Total (Cummings et al. 1994);;;
+NPI_Q_TOTAL;Neuropsychiatric Inventory Questionaire (Kaufer et al. 2000);;;
+FAQFINAN;"Writing checks, paying bills, balancing checkbook (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQFORM;"Assembling tax records, business affairs, or papers (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQSHOP;"Shopping alone for clothes, household necessities, or groceries (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQGAME;"Playing a game of skill, working on a hobby (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQBEVG;"Heating water, making a cup of coffee, turning off stove after use (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQMEAL;"Preparing a balanced meal (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQEVENT;"Keeping track of current events (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQTV;"Paying attention to, understanding, discussing TV, book, magazine (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQREM;"Remembering appointments, family occasions, holidays, medications (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQTRAVL;"Traveling out of neighborhood, driving, arranging to take buses (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+FAQ_TOTAL;"Summary score (Functional Activities Questionnaire; Pfeffer et al. 1982)";;;
+MEMDIS_S;Self-reported memory disturbance;Memory impairment;4304008;386807006
+LNGDIS_S;Self-reported language disturbance;Disorder of language;437896;62305002
+EXFDIS_S;Self-reported executive functioning disturbance (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior);Impaired executive functioning;42537141;736317001
+ATTDIS_S;Self-reported attention disturbances;Disturbance of attention;4328349;76039005
+OTHDIS_S;Self-reported other cognitive disturbances;Cognitive disorder;40480615;443265004
+MEMDIS_E;Externally reported memory disturbances;Memory impairment;4304008;386807006
+LNGDIS_E;Externally reported language disturbance;Disorder of language;437896;62305002
+EXFDIS_E;Externally reported executive functioning disturbances (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior);Impaired executive functioning;42537141;736317001
+ATTDIS_E;Externally reported attention disturbances;Disturbance of attention;4328349;76039005
+OTHDIS_E;Externally reported other cognitive disturbances;Cognitive disorder;40480615;443265004
+MEMDIS_S_TM;Self-reported memory disturbance (text mining);Memory impairment;4304008;386807006
+LNGDIS_S_TM;Self-reported language disturbance (text mining);Disorder of language;437896;62305002
+EXFDIS_S_TM;Self-reported executive functioning disturbance (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior) (text mining);Impaired executive functioning;42537141;736317001
+ATTDIS_S_TM;Self-reported attention disturbances (text mining);Disturbance of attention;4328349;76039005
+OTHDIS_S_TM;Self-reported other cognitive disturbances (text mining);Cognitive disorder;40480615;443265004
+MEMDIS_E_TM;Externally reported memory disturbances (text mining);Memory impairment;4304008;386807006
+LNGDIS_E_TM;Externally reported language disturbance (text mining);Disorder of language;437896;62305002
+EXFDIS_E_TM;Externally reported executive functioning disturbance (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior) (text mining);Impaired executive functioning;42537141;736317001
+ATTDIS_E_TM;Externally reported attention disturbances (text mining);Disturbance of attention;4328349;76039005
+OTHDIS_E_TM;Externally reported other cognitive disturbances (text mining);Cognitive disorder;40480615;443265004
+MEMDIS_X_TM;Unknown reporter: memory disturbance (text mining);Memory impairment;4304008;386807006
+LNGDIS_X_TM;Unknown reporter: language disturbance (text mining);Disorder of language;437896;62305002
+EXFDIS_X_TM;Unknown reporter: executive functioning disturbance (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior) (text mining);Impaired executive functioning;42537141;736317001
+ATTDIS_X_TM;Unknown reporter: attention disturbance (text mining);Disturbance of attention;4328349;76039005
+OTHDIS_X_TM;Unknown reporter: other cognitive disturbances (text mining);Cognitive disorder;40480615;443265004
+MEMDIS_S_ONSET;Onset of self-reported memory disturbance;;;
+LNGDIS_S_ONSET;Onset of self-reported language disturbance;;;
+EXFDIS_S_ONSET;Onset of self-reported executive functioning disturbance (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior);;;
+ATTDIS_S_ONSET;Onset of self-reported attention disturbances;;;
+OTHDIS_S_ONSET;Onset of self-reported other cognitive disturbances;;;
+MEMDIS_E_ONSET;Onset of externally reported memory disturbances;;;
+LNGDIS_E_ONSET;Onset of externally reported language disturbance;;;
+EXFDIS_E_ONSET;Onset of externally reported executive functioning disturbances (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior);;;
+ATTDIS_E_ONSET;Onset of externally reported attention disturbances;;;
+OTHDIS_E_ONSET;Onset of externally reported other cognitive disturbances;;;
+MEMDIS_X_ONSET;Onset of memory disturbances (reporter unknown, text mining);;;
+LNGDIS_X_ONSET;Onset of language disturbance (reporter unknown, text mining);;;
+EXFDIS_X_ONSET;Onset of executive functioning disturbances (abilities to think abstractly and to plan, initiate, sequence, monitor, and stop complex behavior) (reporter unknown, text mining);;;
+ATTDIS_X_ONSET;Onset of attention disturbances (reporter unknown, text mining);;;
+OTHDIS_X_ONSET;Onset of other cognitive disturbances (reporter unknown, text mining);;;
+MEMDIS_ONSET;Memorystörung (Beginn der Beschwerden);;;
+LNGDIS_ONSET;Sprachstörung (Beginn der Beschwerden);;;
+EXFDIS_ONSET;Deficits in planing and order (Beginn der Beschwerden);;;
+ATTDIS_ONSET;Attentionsstörung (Beginn der Beschwerden);;;
+OTHDIS_ONSET;Other deficits (Beginn der Beschwerden);;;
+G_HKT;Hematocrit;Hematocrit;40789179;LP15101-6
+G_HKT_G;Hematocrit (mean);Hematocrit;40789179;LP15101-6
+GLU_B_RESN;Glucose;Glucose;4282459;67079006
+H_HKT;Hematocrit;Hematocrit;40789179;LP15101-6
+K_ALT25;Alanin aminotransferase;Alanine aminotransferase;4211515;56935002
+K_AST;Aspartate aminotransferase;Aspartate aminotransferase;4094657;26091008
+K_BNP;B-natriuretic peptide;Natriuretic peptide B;37078027;LP28609-3
+K_CREA;Creatinine;Creatinine;4035650;15373003
+K_CREA_KK;Creatinine Kinase Kinase;Creatine kinase;4294804;75828004
+K_CRP25;C-reactive protein, Isoform 1 (25 kDa);C-reactive protein;2212761;86140
+K_CTNI;Troponin (CTNI);Troponin;4009409;102680009
+K_GFR4;glomerular filtration rate;Glomerular filtration rate;3523671;177471000000100
+K_GGT;gamma Glutamyltransferase;Gamma glutamyltransferase;35814455;30730
+K_HB;Hemoglobin;Hemoglobin;4244232;38082009
+K_HBA1;Hemoglobin A1C;Hemoglobin A1c;40789263;LP16413-4
+K_HSCRP;C-reactive protein (highly sensitive);C-reactive protein;2212761;86140
+K_INR;(INR) International Normalized Ratio;International Normalized Ratio;45615935;D019934
+K_LEUK;Leukocytes;Leukocytes;45878743;LA12894-4
+K_P_HKT;Hematocrit;Hematocrit;40789179;LP15101-6
+K_P_O2EST;O2 partial pressure;;;
+K_P_SO2;O2 Saturation;Oxygen saturation;37031553;LP21258-6
+K_PTT;;;;
+K_QUIC;Quick;;;
+K_TBIL;Bilirubin;Bilirubin;4196330;79706000
+K_THRO;Thrombocytes;Serotonin | Thrombocytes;40778371;LP69329-8
+K_UCREA;Creatinine (urine);Creatinine - urine;3111939;167433005
+CSF_A40_LVL;CSF Amyloid beta 40;Amyloid beta 40 peptide [Mass/volume] in Cerebral spinal fluid;42868555;70072-4
+CSF_A42_A40_RATIO;CSF Amyloid beta Ratio 42/40;;;
+CSF_A42_LVL;CSF Amyloid beta 42;Amyloid beta 42 peptide [Mass/volume] in Cerebral spinal fluid;3042810;33203-1
+CSF_LEU_CNT;CSF Leukocytes;Leukocytes other | Cerebral spinal fluid | Hematology and Cell counts;37034262;LP392885-2
+CSF_PTP_LVL;CSF pTau;CSF cytospin;40564462;389756000
+CSF_PROT_TOTAL;CSF Protein (total);CSF protein;45441954;487..11
+CSF_TTP_LVL;CSF Tau (total);Tau;4224262;421110008
+SCA_CAT;Patient category (Spinocerebellar Ataxia);;;
+SCA_GENOTYPE;Genotype (Spinocerebellar Ataxia);Genotype;37399698;1028331000000101
+SCA_GENOTYPE_EXCL;Excluded genotype (Spinocerebellar Ataxia);;;
+SCA_CARRIER;Indicates if individual is mutation carrier or a first-degree relative of a mutation carrier (Spinocerebellar Ataxia);;;
+ATAXIC;Can ataxic behaviour be observed?;Visual ataxic gait;3437707;250033003
+SCA_MUTATION_TYPE;Mutation event (Spinocerebellar Ataxia);;;
+SCA_SHORT_ALLELE;CAG repeat count shorter allele (Spinocerebellar Ataxia);SCA1 gene allele 1 CAG repeats;40776285;LP33190-7
+SCA_LONG_ALLELE;CAG repeat count longer allele (Spinocerebellar Ataxia);SCA1 gene allele 1 CAG repeats;40776285;LP33190-7
+SCA_MUTATION_SPEC;Specification of mutation event(s) (Spinocerebellar Ataxia);;;
+REL_TESTED;Indicates whether an SCA patient's relative has been tested;;;
+OLD_STUDY_ID;Participated in previous study with given ID;;;
+HANDEDNESS;Dominant hand;Dominant hand;4135989;263557007
+ATAXIA_BY_GAIT_YEAR;Ataxia: Year of onset (according to gait disturbance);;;
+SGAIT;Score SARA item Gait;;;
+SSTANCE;Score SARA item stance;;;
+SSITTING;Score SARA item sitting;;;
+SDISTURB;Score SARA item speech;;;
+SCHASERI;Subscore right SARA item finger chase;;;
+SCHASELE;Subscore left SARA item finger chase;;;
+SFINGERMEAN;Score SARA item finger chase;;;
+SFINGERRI;Subscore right SARA item nosefinger;;;
+SFINGERLE;Subscore left SARA item nosefinger;;;
+SFINGERNOSEMEAN;Score SARA item nosefinger;;;
+ALHANDRI;Subscore right SARA item diadochokinese;;;
+ALHANDLE;Subscore left SARA item diadochokinese;;;
+SALTHANDMEAN;Score SARA item diadochokinese;;;
+SHEELRI;Subscore right SARA item heelshin;;;
+SHEELLE;Subscore left SARA item heelshin;;;
+SHEELSHINMEAN;Score SARA item heelshin;;;
+SARASUM;SARA summary score;;;
+WalkingProblemYears;Age since a walking problem exists;Difficulty walking down a slope;4083983;282165001
+DOBY;Date of birth: year (numeric);Date of birth;4083587;184099003
+DOBM;Date of birth: month (numeric);Date of birth;4083587;184099003
+DOBD;Date of birth: day (numeric);Date of birth;4083587;184099003
+SCACONTROL;SCA control group;;;
+ATAXIA;patient or 1st degree relative;First degree blood relative;4053607;125678001
+adasgcty;ADAS-COG13: True YES (total);Alzheimer's Disease Assessment Scale;4157231;273269001
+adasgctn;ADAS-COG13: True NO (total);Alzheimer's Disease Assessment Scale;4157231;273269001
+adasl1it;ADAS-COG13: Word List learning 1st trial (correct, raw value);Alzheimer's Disease Assessment Scale;4157231;273269001
+adasl2it;ADAS-COG13: Word List learning 2nd trial (correct, raw value);Alzheimer's Disease Assessment Scale;4157231;273269001
+adasl3it;ADAS-COG13: Word List learning 3rd trial (correct, raw value);Alzheimer's Disease Assessment Scale;4157231;273269001
+adasrlit;ADAS-COG13: correct count, intrusions (raw);Alzheimer's Disease Assessment Scale;4157231;273269001
+adasrlct;ADAS-COG13: correct count (raw);Alzheimer's Disease Assessment Scale;4157231;273269001
+ENTORHINAL_ICV;Entorhinal cortex: fraction on intercranial volume;;;
+FUSIFORM_ICV;Fusiform gyrus: fraction on intercranial volume;;;
+HIPPOCAMPUS_ICV;Hippocampus: fraction on intercranial volume;;;
+MIDTEMP_ICV;Middle temporal gyrus: fraction on intercranial volume;;;
+VENTRICLES_ICV;Ventricular system: fraction on intercranial volume;;;
+WHOLEBRAIN_ICV;Whole brain: fraction on intercranial volume;;;
+TOTSCORE;Total Score (ADAS 11);Alzheimer's Disease Assessment Scale;4157231;273269001
+TOTAL13;Total Score (ADAS 13);Alzheimer's Disease Assessment Scale;4157231;273269001
+BCDEPRES;9. Clinically relevant depression based on clinical judgment or GDS?;Depression;35809476;c138
+BCSTROKE;10. Did subject have a stroke?;Stroke test finding;4280420;366609000
+BCVOMIT;2. Vomiting;Vomiting;441408;422400008
+BCSWEATN;6. Sweating;Sweating;4188566;415690000
+BCVISION;10. Blurred vision;Blurred vision;44790749;240091000000105
+BCHDACHE;11. Headache;Headache;40305063;139490008
+BCCHEST;16. Chest pain;Chest pain;77670;29857009
+CDSOB;Sum of Boxes (system populated);;;
+CDGLOBAL;Global CDR (system populated);CDR (Clinical Dementia Rating) score;36714811;720204003
+FHQMOM;Dementia;Dementia;4182210;52448006
+FHQMOMAD;Alzheimer's Disease;Alzheimer's Disease;45948811;149019
+FHQDAD;Dementia;Dementia;4182210;52448006
+FHQDADAD;Alzheimer's Disease;Alzheimer's Disease;45948811;149019
+FHQSIB;3. Does the participant have any siblings?;Number of siblings;4072485;224095004
+GDTOTAL;Total Score;Total score;1004383;LP101867-2
+MMSCORE;MMSE TOTAL SCORE;MMSE score;45488637;388m.11
+HMSCORE;TOTAL SCORE;Total score;1004383;LP101867-2
+CLOCKSCOR;Total Score;Total score;1004383;LP101867-2
+CATANIMSC;Category Fluency (Animals) - Total Correct;Fluency of speech;4239444;363921007
+TRAASCOR;Part A - Time to Complete;Time to complete test;35810502;4285
+TRABSCOR;Part B - Time to complete;Time to complete test;35810502;4285
+BNTTOTAL;Total Number Correct (1+3);;;
+LDELTOTAL;Total Number of Story Units Recalled;;;
+AVDELTOT;Recognition Score;Recognition odor;4242904;5987007
+ANARTERR;ANART Total Score (Total # of errors);;;
+PXHEADEY;2. Head, Eyes, Ears, Nose and Throat;H/O: * ears, nose, throat;40302017;138710000
+PXHEART;5. Heart;Heart;36308337;LA21016-3
+PTGENDER;1. Participant Gender;Gender;4135376;263495000
+PTDOB;2. Participant Date of Birth;Date of Birth;35918443;240
+PTAGE;Age at Screening Visit;;;
+PTHAND;3. Participant Handedness;Handedness;4211853;57427004
+PTMARRY;4. Participant Marital Status;Marital Status;45612258;D017533
+PTEDUCAT;5. Participant Education;Education;4254480;409073007
+PTHOME;8. Type of Participant residence;City of residence;4335813;433178008
+PTETHCAT;10. Ethnic Category;Ethnic category;3199226;372148003
+PTRACCAT;11. Racial Categories;Race;4013886;103579009
+FHQSIBAD;Alzheimer's Disease;Alzheimer's Disease;45948811;149019
+VSWEIGHT;1a. Weight;Weight;903121;weight
+VSHEIGHT;2a. Height;Height;903133;height
+DXCHANGE;1.  Which best describes the participant's change in cognitive status from last visit to current visit?  At Screening Visit, indicate initial diagnosis using one of the 'Stable' options.;Change in cognitive status;1032100;LP74611-2
+DXPARK;4b.  Parkinsonism symptoms present?;Parkinsonism;4140090;32798002
+NPITOTAL;NPI Total Score;NPI;35833924;JMDC6614
+POL0;POLY DRUG USE<!-Absent-->;;;
+GADC;Current Diagnosis <!--Generalized Anxiety Disorder-->;Anxiety;45939023;121543
+MHSHEAD;1. Problems with your head, eyes, ears, nose, throat?;;;
+MHSPITUIT;7. Problems with your pituitary/thyroid or endocrine/metabolic system?;;;
+MHSCANCER;13. Problems with cancer?;Cancer;45877275;LA10524-9
+MHSDIABET;15. Problems with diabetes?;Diabetes;45879799;LA10529-8
+DCITYST;In what city and state do you currently live?;City of residence;4335813;433178008
+PABIPOLAR;As far as you know, have you ever been told by a doctor that you had bipolar disorder or manic depression?;Cancer diagnosed by doctor;35810298;2453
+PADRINKMO;On average, how many drinks containing alcohol do you currently consume per month?;Alcohol intake;4052351;160573003
+DCURDET;If employed or working for pay, what are your current job title and main duties?;Job;41945001;357919
+DHBP;Do you have or are you being treated for high blood pressure?;Do you have high blood pressure;1006690;LP116763-6
+DPARTNR;Do you have someone, a spouse, adult child, relative or friend that you live with and/or depend upon?;;;
+SHQCIGDAY;2a. How many cigarettes per day do you smoke?;;;
+SHQFSTOP;7. At what age did you permanently stop smoking?;Age when stopped smoking cigarettes completely;37020654;92659-2
+ASI1B;Lifetime Use # of years <!--Alcohol - Any use at all-->;Total time drunk alcohol;4035932;228330005
+TBFUPEN;Now I am going to ask you about head or neck injuries, in the past year.</p> In the past year, have you had an injury that involved any penetration of a bullet, knife, stick, or other sharp object into your neck, head, or skull?;Injury of head;375415;82271004
+PAFUSCHIZO;In the past year, have you been told by a doctor that you had schizophrenia, schizoaffective disorder, or any psychotic disorder?;Psychic Disease;45936787;128242
+APGEN1;Genotype - Allele 1;;;
+APGEN2;Genotype - Allele 2;;;
+COMPOSITE_SUVR;"Summary florbetapir cortical SUVR. Weighted florbetapir mean in frontal, cingulate, parietal and temporal regions.  Regions defined by Freesurfer; see Jagust lab PDF on LONI for details";florbetapir;46256527;C545186
+ST29SV;Subcortical Volume (aseg.stats) of LeftHippocampus;Volume of hippocampus (left);35811996;25019
+ST88SV;Subcortical Volume (aseg.stats) of RightHippocampus;Volume of hippocampus (right);35811997;25020
+TAU;TAU;Tau;4224262;421110008
+ABETA;ABETA;;;
+PTAU;PTAU;Tau protein;4136437;412631008

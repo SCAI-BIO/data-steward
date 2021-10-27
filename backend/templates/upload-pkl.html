@@ -1,0 +1,40 @@
+{% extends 'base-template.html' %} {% block content %}
+<div class="ui container">
+    <div class="row" style="margin-bottom: 10vh;">
+
+        <div class="ui message">
+            <div class="header">
+                Please Note
+            </div>
+            <p>This upload method deos not provide any data sanitizing. Make sure your data is valid.</p>
+            <p>This Method is should only be used for testing purposes!</p>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="ui">Upload a .pkl File</h2>
+        <br>
+
+        <form class="ui form" method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="field">
+                <label>File Upload</label>
+                <input type="file" name="file" placeholder="Upload .pkl file">
+            </div>
+            <button class="ui button primary" type="submit" style="float: right;">Submit</button>
+        </form>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <form class="ui form" method="POST" action="{% url 'import_pkl_dump' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="field">
+                <label>File Upload as JSON Dump</label>
+                <input type="file" name="file" placeholder="Upload .pkl file">
+            </div>
+            <button class="ui button primary" type="submit" style="float: right;">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
