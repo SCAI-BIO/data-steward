@@ -3763,7 +3763,7 @@ def get_nearest_neighbor_attribute(request):
     attribute = request.GET.get("attribute")
     INCLUDED_CHECK = True
     CAMELCASE_CHECK = False
-    UNDERSCORE_SPLIT = True
+    UNDERSCORE_SPLIT = False
     ##  make initial candidate 
     all_attributes = DatamodelAttribute.objects.all()
     candidate = all_attributes[0].Attribute

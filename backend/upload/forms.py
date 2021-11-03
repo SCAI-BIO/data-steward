@@ -21,7 +21,7 @@ from .BulkCreateManager import BulkCreateManager
 
 date_range_global = ["1875-01-01", datetime.today().strftime('%Y-%m-%d')]
 ucum_api_url = "http://ucum.nlm.nih.gov/ucum-service/v1"
-from pyucum.ucum import *
+#from pyucum.ucum import *
 import urllib
 import xml.etree.ElementTree as ET
 from collections import Counter

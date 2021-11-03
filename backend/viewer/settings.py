@@ -26,12 +26,12 @@ BASEPATH="clinical-backend/"
 SECRET_KEY = 'p1bn9df+a5acg1b&-19qe!c(q*zpqsgo!t2b9=w&%+edm2cc79'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
-    BASE_HTTP_URL = "https://data-steward.bio.scai.fraunhofer.de/clinical-backend/"#"http://localhost:8000/clinical-backend/"
+    BASE_HTTP_URL = "http://localhost:8001/clinical-backend/"
 else:
-    BASE_HTTP_URL = "https://data-steward.bio.scai.fraunhofer.de/clinical-backend/"#"https://data-steward.bio.scai.fraunhofer.de"#"https://idsn.dzne.de/clinical-backend/"
+    BASE_HTTP_URL = "http://localhost:8001/clinical-backend/"
 
 
 
@@ -199,11 +199,9 @@ DATABASES = {
             #'HOST': '172.18.0.4',
             'PORT': 27017,
             'USER': 'idsn',
-            'PASSWORD': 'IDSNdjangoSetup!',
-            #'PASSWORD': 'idsn4tvb-c',
-
+            'PASSWORD': 'ökkjsdvlkadslcik83kjsbd89',
             'AUTH_SOURCE': 'clinical_backend_2',
-            #'AUTH_SOURCE': 'coperimo_db',
+            
            # 'AUTH_MECHANISM': 'SCRAM-SHA-1',
         },
         'visits-sqlite':{
