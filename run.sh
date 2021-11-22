@@ -11,8 +11,15 @@ service mongodb start
 
 mongo /var/steward/mongo-init.js
 
+cd /var/steward/
+
+npm i 
+
+node app_no_auth.js &
+
+cd ..
+cd ..
+
 python3.8 /var/django_clinical/manage.py migrate 
 
-python3.8 /var/django_clinical/manage.py runserver 8001 &
-
-node /var/steward/app_no_auth.js &
+python3.8 /var/django_clinical/manage.py runserver 0.0.0.0:8001

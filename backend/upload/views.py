@@ -24,7 +24,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import api_view,  permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from api.views import use_token_auth
+from datastewardbackend.views import use_token_auth
 
 date_range_global = ["1875-01-01", datetime.today().strftime('%Y-%m-%d')]
 ucum_api_url = "http://ucum.nlm.nih.gov/ucum-service/v1"

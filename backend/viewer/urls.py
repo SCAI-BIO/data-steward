@@ -13,7 +13,6 @@ urlpatterns = [
     path(settings.BASEPATH + '', landing, name="landing"),
     path(settings.BASEPATH + 'admin/', admin.site.urls),
     #path(settings.BASEPATH + 'api-auth/', include('rest_framework.urls')),
-    path(settings.BASEPATH + 'api/', include('api.urls')),
     path(settings.BASEPATH + "fhir/", include('fhir_apis.urls')),
     #path(settings.BASEPATH + 'keycloak/', include('django_keycloak.urls')),
     path(settings.BASEPATH + 'api-steward/', include('datastewardbackend.urls')),

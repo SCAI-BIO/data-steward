@@ -29,7 +29,7 @@ def fhir_export_all_datapoints(request):
                         "value": settings.BASE_HTTP_URL + f"/fhir/get/observation/{dtps.id}"
                     },
                     {
-                        "value": dtps.pid + "@" + dtps.source
+                        "value": dtps.pid + "@" + dtps.source.Source
                     }
                 ],
                 "subject": {
@@ -55,6 +55,16 @@ def fhir_export_all_datapoints(request):
                 orjson.loads(fhir_observation.json())
             )
     return JsonResponse(list_entries, safe=False, status=200)
+
+
+    
+
+
+@api_view(['GET'])
+def all_datapoint_ids(requests):
+    all_dpts = BasicDataPoint.objects.exclude(variable__isnull=True)
+    return JsonResponse({"ids": [p.id for p in all_dpts]})
+
 
 
 @api_view(['GET'])
@@ -89,22 +99,32 @@ def fhir_export_observation(request, id):
     observation = get_object_or_404(BasicDataPoint, id=id)
     # print(observation)
     observation_obj = {
-        "subject": {
-            "reference": settings.BASE_HTTP_URL + f"/fhir/get/patient/<source>/{observation.pid}"
-        },
-        "status": "final",
-        "code": {
-            "text": observation.variable.Attribute
-        },
-        "valueString": {
-            observation.value
-        },
-        "effectiveTiming": {
-            "code": {
-                "text": observation.timestamp
+                "identifier": [
+                    {
+                        "value": settings.BASE_HTTP_URL + f"/fhir/get/observation/{observation.id}"
+                    },
+                    {
+                        "value": observation.pid + "@" + observation.source.Source
+                    }
+                ],
+                "subject": {
+                    "reference": observation.pid
+                },
+                "status": "final",
+                "code": {
+                    "text": observation.variable.Attribute
+                },
+                "valueString": observation.value,
+                "effectiveTiming": {
+                    "code": {
+                        "text": observation.timestamp
+                    }
+                }
             }
-        }
-
-    }
-    observation = Observation(**observation)
-    return JsonResponse(orjson.loads(observation.json()), status=200)
+    if observation.source:
+        observation_obj["performer"] = [{
+            "reference": observation.source.Source
+        }]
+    fhir_observation = Observation(**observation_obj)
+    
+    return JsonResponse(orjson.loads(fhir_observation.json()),safe=False, status=200)

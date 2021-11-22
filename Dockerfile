@@ -5,7 +5,7 @@ RUN mkdir /var/django_clinical
 COPY backend/ /var/django_clinical
 
 
-RUN apt-get update 
+RUN apt-get update
 
 RUN apt-get install -y software-properties-common
 
@@ -40,6 +40,9 @@ RUN apt-get install -y redis-server
 
 RUN apt-get install -y build-essential libssl-dev libffi-dev python-dev
 
+RUN apt-get -y install dirmngr apt-transport-https lsb-release ca-certificates
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 RUN python3.8 -m pip install -r /var/django_clinical/requirements.txt
 
@@ -57,23 +60,25 @@ RUN mkdir /var/steward
 
 COPY mongo-init.js /var/steward/mongo-init.js
 
-RUN apt-get install -y npm
+#RUN apt-get install -y npm
 
 RUN apt-get install -y nodejs
 
 
+
+RUN echo npm -v 
 
 COPY frontend/dist/ /var/steward/dist
 COPY frontend/package.json /var/steward/package.json
 COPY frontend/app_no_auth.js /var/steward/app_no_auth.js
 
 
-RUN npm install -g express
-RUN npm install -g path
-RUN npm install -g serve 
-RUN npm install -g axios
-RUN npm install -g cookie-parser
+#RUN npm install fs-extra && sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
+
+
+
 COPY run.sh run.sh 
 EXPOSE 5000
+EXPOSE 8001
 CMD [ "sh", "run.sh"]
  

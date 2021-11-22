@@ -1357,7 +1357,7 @@ def filter_update(request):
 
 ## DATAMODEL STUFF
 
-
+'''
 
 dirname = os.path.dirname(os.path.realpath('__file__'))
 
@@ -1375,7 +1375,7 @@ model_codes = model_codes.reset_index()
 print(model_items.columns)
 print(model_codes.columns)
 
-'''
+
 datamodel_attr_all = DatamodelAttribute.objects.all()
 model_items = pd.DataFrame(columns=['Active','Topic','Topic_Description','Umbrella','Umbrella_Description','Attribute','Attribute_Description',
        'Attribute_Tooltip','Datatype','Domain','Unit'])

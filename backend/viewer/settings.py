@@ -95,7 +95,7 @@ INSTALLED_APPS = [
     #'channels',
     'django_memcached',
     'users',
-    'api',
+    #'api',
     'rest_framework',
     'rest_framework.authtoken',
     
@@ -193,14 +193,16 @@ DATABASES = {
         'default': {
             'ENGINE': 'djongo',
             'ENFORCE_SCHEMA': False,
-            #'NAME': 'coperimo_db',
+            
             'NAME': 'clinical_backend_2',
             'HOST': MONGO_HOST,
             #'HOST': '172.18.0.4',
             'PORT': 27017,
             'USER': 'idsn',
+            
             'PASSWORD': 'ökkjsdvlkadslcik83kjsbd89',
             'AUTH_SOURCE': 'clinical_backend_2',
+            
             
            # 'AUTH_MECHANISM': 'SCRAM-SHA-1',
         },

@@ -38,12 +38,12 @@ class DatamodelSource(djongo_models.Model):
 class DatamodelUnit(djongo_models.Model):
 
     Unit        = djongo_models.CharField(      "Unique code expressing unit.",
-                                                max_length=16,
+                                                max_length=1024,
                                                 primary_key=True)
     UCUM        = djongo_models.BooleanField(   "Indicates whether code is listed in UCUM.",
                                                 default=True)
     Description = djongo_models.CharField(      "Short description of unit.",
-                                                max_length=256)
+                                                max_length=4096)
 
     def attrs(self):
         """Dictionary with instance attributes."""

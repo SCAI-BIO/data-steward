@@ -1,6 +1,6 @@
 import csv
 import threading
-from api.serializers import DataPointsVisitSerializer_light
+from .serializers import DataPointsVisitSerializer_light
 
 
 
@@ -57,7 +57,7 @@ import time
 import os
 import traceback
 import requests
-from api.views import use_token_auth, custom_permission_classes
+#from api.views import use_token_auth, custom_permission_classes
 from .models import BasicDataPoint, SemanticAsset, Measurement, MeasurementLocation, MeasurementMethod, MeasurementObject
 
 
@@ -67,7 +67,32 @@ from urllib.parse import urlencode
 import pandas as pd
 import editdistance
 
+'''
+Decorators for authentification
 
+'''
+
+WITH_AUTH = settings.WITH_AUTH
+
+def custom_permission_classes(permission_classes):
+    def decorator(func):
+        if WITH_AUTH:
+            func.permission_classes = permission_classes
+        return func
+    return decorator
+
+def use_token_auth(func):
+    def wrapper(request, *args, **kwargs):
+        if WITH_AUTH:
+            t = request.COOKIES.get('idsn_access_token')
+            if t is None:
+                print("No token found")
+                return HttpResponseForbidden()
+            request.META['Authorization'] = "Token " + t
+        return func(request, *args, **kwargs)
+    return wrapper
+
+    
 
 
 # GLOBALS

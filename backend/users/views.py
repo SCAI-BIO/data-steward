@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from .models import CustomUser
-from api.views import use_token_auth
+from datastewardbackend.views import use_token_auth
 from rest_framework.decorators import api_view,  permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib import messages
