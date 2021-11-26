@@ -68,9 +68,7 @@ RUN apt-get install -y nodejs
 
 RUN echo npm -v 
 
-COPY frontend/dist/ /var/steward/dist
-COPY frontend/package.json /var/steward/package.json
-COPY frontend/app_no_auth.js /var/steward/app_no_auth.js
+COPY frontend/ /var/steward/
 
 
 #RUN npm install fs-extra && sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js

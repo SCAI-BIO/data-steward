@@ -13,9 +13,13 @@ mongo /var/steward/mongo-init.js
 
 cd /var/steward/
 
+echo "" >> .env.development
+
+echo "VUE_APP_CLINICALURL=${BACKEND_URL}/clinical-backend/api-steward" >> .env.development
+
 npm i 
 
-node app_no_auth.js &
+npm run serve &
 
 cd ..
 cd ..
