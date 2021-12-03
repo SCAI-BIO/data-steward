@@ -17,6 +17,8 @@ echo "" >> .env.development
 
 echo "VUE_APP_CLINICALURL=${BACKEND_URL}/clinical-backend/api-steward" >> .env.development
 
+echo "VUE_APP_CLINICALURL=${BACKEND_URL}/clinical-backend/api-steward" >> .env.production
+
 npm i 
 
 npm run serve &

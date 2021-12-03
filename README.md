@@ -1,6 +1,16 @@
 # data-steward
 
 
+## Updates December 2021
+
+- Data Variables can now have synonyms 
+- Using synonyms increased mapping capability 
+
+
+## API Documentation 
+
+https://data-steward-api.api-docs.io/1.0.0/
+
 ## License 
 
 Copyright 2021 Developers of Data Steward Tool 

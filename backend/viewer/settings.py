@@ -186,22 +186,22 @@ WSGI_APPLICATION = 'viewer.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 MONGO_HOST = os.environ["MONGO_DB"] if 'MONGO_DB' in os.environ else "localhost"
-
+MONGO_HOST ="127.0.0.1"
 
 
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
             'ENFORCE_SCHEMA': False,
-            
-            'NAME': 'clinical_backend_2',
+            'NAME': 'coperimo_db',
+            #'NAME': 'clinical_backend_2',
             'HOST': MONGO_HOST,
             #'HOST': '172.18.0.4',
             'PORT': 27017,
             'USER': 'idsn',
-            
-            'PASSWORD': 'ökkjsdvlkadslcik83kjsbd89',
-            'AUTH_SOURCE': 'clinical_backend_2',
+            'PASSWORD' : 'idsn4tvb-c',
+            #'PASSWORD': 'ökkjsdvlkadslcik83kjsbd89',
+            'AUTH_SOURCE': 'coperimo_db',
             
             
            # 'AUTH_MECHANISM': 'SCRAM-SHA-1',
