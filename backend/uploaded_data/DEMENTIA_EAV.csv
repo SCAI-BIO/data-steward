@@ -1,0 +1,10 @@
+;PID;TIMESTAMP;ATTRIBUTE;VALUE;;
+;1;0;PatientAge;76;;
+;1;0;WalkingProblems;True;;
+;1;1;ABETA_40;649;;
+;2;0;PatientAge;60;;
+;2;1;MemoryProblems;False;;
+;2;1;WalkingProblems;False;;
+;3;0;PatientsFavoriteColor;Yellow;;
+;3;1;ABETA_40;699;;
+;3;2;ABETA_42;6367;;

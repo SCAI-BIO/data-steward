@@ -28,7 +28,7 @@ from datastewardbackend.views import use_token_auth
 
 date_range_global = ["1875-01-01", datetime.today().strftime('%Y-%m-%d')]
 ucum_api_url = "http://ucum.nlm.nih.gov/ucum-service/v1"
-from pyucum.ucum import *
+
 import urllib
 import xml.etree.ElementTree as ET
 from collections import Counter
@@ -1104,7 +1104,8 @@ def verify_units2UCUM(request, actual_unit, reference_unit, buffer_dict={}):
     if not call:
         return {}
     # print(request)
-    reply = ucumVerify(call, ucum_api_url)
+    #reply = ucumVerify(call, ucum_api_url)
+    reply = None
     reply_dict = UCUM_server_reply2dict(reply)
     if not reference_unit in buffer_dict and not reference_unit in reply_dict:
         gui_messages.error(request, "Could not resolve reference unit in UCUM!")

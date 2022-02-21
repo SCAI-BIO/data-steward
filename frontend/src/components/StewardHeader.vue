@@ -39,7 +39,7 @@
             <li><a href="/data-steward/table">Table</a></li>
              <li><a href="/data-steward/metrics">Statistics</a></li>
           </ul>
-          <li><a href="/">Clinical Viewer</a></li>
+          <li><a href="/clinical-viewer">Clinical Viewer</a></li>
           <li><a href="/data-steward/download">Download</a></li>
           <li><a href="/data-steward/contact">Contact</a></li>
         </ul>
@@ -57,7 +57,7 @@
       <li><a href="/data-steward/edit">Wizard</a></li>
       
       <li><a href="/data-steward/graph">Visualization</a></li>
-      <li><a href="/">Clinical Viewer</a></li>
+      <li><a href="/clinical-viewer">Clinical Viewer</a></li>
       
       <li><a href="/data-steward/download">Download</a></li>
     </ul>

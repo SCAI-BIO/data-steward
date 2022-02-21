@@ -9,7 +9,11 @@ service mongod start
 
 service mongodb start 
 
+sleep 5
+
 mongo /var/steward/mongo-init.js
+
+sleep 5
 
 cd /var/steward/
 
@@ -21,7 +25,9 @@ echo "VUE_APP_CLINICALURL=${BACKEND_URL}/clinical-backend/api-steward" >> .env.p
 
 npm i 
 
-npm run serve &
+npm run build
+
+node app_no_auth.js &
 
 cd ..
 cd ..

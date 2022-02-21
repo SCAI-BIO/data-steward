@@ -1,4 +1,4 @@
-#!/home/philipp/Schreibtisch/Fraunhofer/Scai/SEM-Group/clinical-backend/env/bin/python
+#!/Users/philippwegner/Desktop/Fraunhofer/SEM-Group/git/github/data-steward/backend/env/bin/python
 
 # $Id: rst2xetex.py 7847 2015-03-17 17:30:47Z milde $
 # Author: Guenter Milde

@@ -1,4 +1,4 @@
-#!/home/philipp/Schreibtisch/Fraunhofer/Scai/SEM-Group/clinical-backend/env/bin/python
+#!/Users/philippwegner/Desktop/Fraunhofer/SEM-Group/git/github/data-steward/backend/env/bin/python
 
 # Author:
 # Contact: grubert@users.sf.net

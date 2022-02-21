@@ -1,4 +1,4 @@
-#!/home/philipp/Schreibtisch/Fraunhofer/Scai/SEM-Group/clinical-backend/env/bin/python
+#!/Users/philippwegner/Desktop/Fraunhofer/SEM-Group/git/github/data-steward/backend/env/bin/python
 
 # $Id: rst2html4.py 7994 2016-12-10 17:41:45Z milde $
 # Author: David Goodger <goodger@python.org>

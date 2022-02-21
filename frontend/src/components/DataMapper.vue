@@ -31,7 +31,7 @@
           Fill sources
         </button>
       </div>
-      <div class="col">
+      <div class="col s3">
         <p>
           <label>
             <input
@@ -44,13 +44,25 @@
           </label>
         </p>
       </div>
-      <div class="col">
+      <div class="col s3">
         <p>
           <label>
             <input type="checkbox" class="filled-in" @change="alterOLS()" />
             <span>Include OLS</span>
           </label>
         </p>
+      </div>
+     <div class="col s3">
+
+     </div>
+      <div class="col s3">
+  
+            <select name="mapper_select" id="mapper_selector" @change="alterMapper()">
+              <option value="" disabled selected>Select a mapper</option>
+              <option value="lev">Levenshtein</option>
+              <option value="jaro">Jaro–Winkler</option>
+              <option value="ai">AI mapper <i class="small material-icons">build</i> (beta)</option>
+            </select>
       </div>
       <div v-if="makeSuggestion == true" class="col">
         <span class="badge blue" style="color: white">matched &#62; 80%</span>
@@ -59,7 +71,7 @@
 
       <!-- 
 
-            Modal for editing the row
+            Modal for editing the row˘
         -->
 
       <div id="modal1" class="modal">
@@ -211,7 +223,9 @@ export default {
       var elems = document.querySelectorAll(".modal");
       M.Modal.init(elems);
       M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+      M.FormSelect.init(document.querySelectorAll("select"));
     });
+
     if (window.innerWidth <= 1300) {
       document.getElementById("main_container").classList.remove("container");
       document.getElementById("main_container").classList.add("px-4");
@@ -245,6 +259,11 @@ export default {
   },
 
   methods: {
+    alterMapper: function(){
+      var mapper = document.getElementById("mapper_selector").value;
+      console.log(mapper);
+    },
+
     checkForSingleSource: function () {
       function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;

@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/home/philipp/Schreibtisch/Fraunhofer/Scai/SEM-Group/clinical-backend/env"
+$VIRTUAL_ENV = r"/Users/philippwegner/Desktop/Fraunhofer/SEM-Group/git/github/data-steward/backend/env"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

@@ -1,4 +1,4 @@
-#!/home/philipp/Schreibtisch/Fraunhofer/Scai/SEM-Group/clinical-backend/env/bin/python
+#!/Users/philippwegner/Desktop/Fraunhofer/SEM-Group/git/github/data-steward/backend/env/bin/python
 # Copyright (c) 2005-2012 Stephen John Machin, Lingfo Pty Ltd
 # This script is part of the xlrd package, which is released under a
 # BSD-style licence.

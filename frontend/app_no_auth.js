@@ -3,13 +3,6 @@ const path = require('path');
 
 const app = express();
 
-
-/*
-The following lines are a good example of a very lazy workaround.
-@author Philipp Wegner
-*/
-
-
 app.use(express.static(__dirname + 'dist'));
 
 app.get('/data-steward/css/:name', function (req, res) {

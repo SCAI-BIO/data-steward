@@ -49,7 +49,6 @@ from pyexcel_io.constants import DB_DJANGO
 from pyexcel_io.database.common import DjangoModelImporter, DjangoModelImportAdapter
 
 # UCUM
-from pyucum.ucum import *
 import urllib
 import xml.etree.ElementTree as ET
 from django.db import IntegrityError
@@ -67,6 +66,12 @@ from urllib.parse import urlencode
 
 import pandas as pd
 import editdistance
+
+
+import xlrd
+xlrd.xlsx.ensure_elementtree_imported(False, None)
+xlrd.xlsx.Element_has_iter = True
+
 
 '''
 Decorators for authentification
@@ -1048,7 +1053,8 @@ def verify_units2UCUM(actual_unit, reference_unit, main_msg_queue, buffer_dict={
     call = [x for x in [actual_unit, reference_unit] if x not in buffer_dict]
     if not call:
         return {}
-    reply = ucumVerify(call, ucum_api_url)
+    #reply = ucumVerify(call, ucum_api_url)
+    reply = None
     reply_dict = UCUM_server_reply2dict(reply)
     if not reference_unit in buffer_dict and not reference_unit in reply_dict:
         throw_or_enqueue(
@@ -1894,7 +1900,7 @@ def datamodel_upload(request):
     # START
 
     main_msg_queue = []
-    sheet_names = get_book(file_name=fi.file.path).sheet_names()
+    sheet_names = get_book(file_name=fi.file.path, engine='openpyxl').sheet_names()
 
     misses = [sn for sn in model2sheet_core.values() if not sn in sheet_names]
     if misses:
@@ -3807,7 +3813,7 @@ def string_distance(s1,s2):
 @api_view(['GET'])
 def get_nearest_neighbor_attribute(request):
     attribute = request.GET.get("attribute")
-    INCLUDED_CHECK = True
+    INCLUDED_CHECK = False
     CAMELCASE_CHECK = False
     UNDERSCORE_SPLIT = False
     ##  make initial candidate 
@@ -3835,10 +3841,10 @@ def get_nearest_neighbor_attribute(request):
             distance = dist
     ### Check in list of all synonyms
     for syn in all_synonyms:
-        dist = string_distance(attr.Synonym,attribute)
+        dist = string_distance(syn.Synonym,attribute)
 
         if dist < distance:
-            candidate = syn.Attribute
+            candidate = syn.Target_Attribute
             distance = dist
     if distance > 0.66*len(attribute):
         if request.GET.get('ols') == "true":

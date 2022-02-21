@@ -57,7 +57,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV '/home/philipp/Schreibtisch/Fraunhofer/Scai/SEM-Group/clinical-backend/env'
+set -gx VIRTUAL_ENV '/Users/philippwegner/Desktop/Fraunhofer/SEM-Group/git/github/data-steward/backend/env'
 
 # https://github.com/fish-shell/fish-shell/issues/436 altered PATH handling
 if test (echo $FISH_VERSION | head -c 1) -lt 3
