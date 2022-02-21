@@ -11,6 +11,7 @@ from django.http import FileResponse
 from rest_framework.permissions import IsAuthenticated
 from djongo import models as djongo_models
 from django.conf import settings
+from upload.models import DatamodelAttibuteSynonym
 
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.decorators import api_view,  permission_classes
@@ -48,7 +49,6 @@ from pyexcel_io.constants import DB_DJANGO
 from pyexcel_io.database.common import DjangoModelImporter, DjangoModelImportAdapter
 
 # UCUM
-from pyucum.ucum import *
 import urllib
 import xml.etree.ElementTree as ET
 from django.db import IntegrityError
@@ -66,6 +66,12 @@ from urllib.parse import urlencode
 
 import pandas as pd
 import editdistance
+
+
+import xlrd
+xlrd.xlsx.ensure_elementtree_imported(False, None)
+xlrd.xlsx.Element_has_iter = True
+
 
 '''
 Decorators for authentification
@@ -1047,7 +1053,8 @@ def verify_units2UCUM(actual_unit, reference_unit, main_msg_queue, buffer_dict={
     call = [x for x in [actual_unit, reference_unit] if x not in buffer_dict]
     if not call:
         return {}
-    reply = ucumVerify(call, ucum_api_url)
+    #reply = ucumVerify(call, ucum_api_url)
+    reply = None
     reply_dict = UCUM_server_reply2dict(reply)
     if not reference_unit in buffer_dict and not reference_unit in reply_dict:
         throw_or_enqueue(
@@ -1893,7 +1900,7 @@ def datamodel_upload(request):
     # START
 
     main_msg_queue = []
-    sheet_names = get_book(file_name=fi.file.path).sheet_names()
+    sheet_names = get_book(file_name=fi.file.path, engine='openpyxl').sheet_names()
 
     misses = [sn for sn in model2sheet_core.values() if not sn in sheet_names]
     if misses:
@@ -2256,6 +2263,7 @@ def post_edit_attr(request):
     domain = data.get('domain') or None
     datatype = data.get('datatype') or None
     unit_unit = data.get('unit') or None
+    synonyms = data.get("attr_synonyms") or None
     # to do make sanitizing
     # check if model exists
     
@@ -2321,6 +2329,10 @@ def post_edit_attr(request):
     '''
     try:
         attr.save()
+        if synonyms:
+        #print(synonyms.split("\n"))
+            for synonym in synonyms.split("\n"):
+                DatamodelAttibuteSynonym.objects.create(Target_Attribute=attr, Synonym=str(synonym).replace("'\r", ""))
      
     except:
         print(traceback.format_stack())
@@ -2351,6 +2363,7 @@ def post_create_attr(request):
     domain = data.get('domain') or None
     datatype = data.get('datatype') or None
     unit_unit = data.get('unit') or None
+    synonyms = data.get("attr_synonyms") or None
 
 
     # to do make sanitizing
@@ -2401,6 +2414,9 @@ def post_create_attr(request):
         return JsonResponse({'message': "No such unit"})
     attr.Unit = unit[0]
 
+   
+
+
     '''
     unit = DatamodelUnit()
     unit.Unit = unit_unit
@@ -2423,10 +2439,17 @@ def post_create_attr(request):
     '''
     try:
         attr.save()
+        if synonyms:
+            #print(synonyms.split("\n"))
+            for synonym in synonyms.split("\n"):
+                DatamodelAttibuteSynonym.objects.create(Target_Attribute=attr, Synonym=str(synonym).replace("'\r", ""))
      
     except:
         print(traceback.format_stack())
         return JsonResponse({'message': traceback.format_stack()})
+
+    
+
 
     return JsonResponse({'message': 'ok', 'msg_queue': main_msg_queue})
 
@@ -2544,6 +2567,9 @@ def get_datamodel_as_excel(request):
     # DatamodelSource
     data_source_df = pd.DataFrame(DatamodelSource.objects.all().values())
 
+    # DatamodelSynonyms 
+    data_synonyms_df = pd.DataFrame(DatamodelAttibuteSynonym.objects.all().values())
+
     #xlsx file write
     data_unit_df.to_excel(writer, sheet_name='Units', index=False)
     data_code_df.to_excel(writer, sheet_name='Codes', index=False)
@@ -2552,6 +2578,7 @@ def get_datamodel_as_excel(request):
     data_codemapping_df.to_excel(writer, sheet_name='Code_Mappings', index=False)
     data_attrmapping_df.to_excel(writer, sheet_name='Attribute_Mappings', index=False)
     data_calculation_df.to_excel(writer, sheet_name='Calculations', index=False)
+    data_synonyms_df.to_excel(writer, sheet_name="Synonyms", index=False)
 
 
     writer.save()
@@ -3786,11 +3813,12 @@ def string_distance(s1,s2):
 @api_view(['GET'])
 def get_nearest_neighbor_attribute(request):
     attribute = request.GET.get("attribute")
-    INCLUDED_CHECK = True
+    INCLUDED_CHECK = False
     CAMELCASE_CHECK = False
     UNDERSCORE_SPLIT = False
     ##  make initial candidate 
     all_attributes = DatamodelAttribute.objects.all()
+    all_synonyms = DatamodelAttibuteSynonym.objects.all()
     candidate = all_attributes[0].Attribute
     distance = string_distance(attribute,candidate)
     ## bruteforece loop over all attributes and find a better one 
@@ -3804,11 +3832,19 @@ def get_nearest_neighbor_attribute(request):
             if str(attribute) in str(attr.Attribute) or str(attribute) in str(attr.Attribute_Description.split(";")):
                 candidate = attr
                 return JsonResponse({'message': 'ok', 'candidate': candidate.Attribute, "distance": 0.81})
+    ### Check in list of all attributes             
     for attr in all_attributes:
         dist = string_distance(attr.Attribute,attribute)
 
         if dist < distance:
             candidate = attr
+            distance = dist
+    ### Check in list of all synonyms
+    for syn in all_synonyms:
+        dist = string_distance(syn.Synonym,attribute)
+
+        if dist < distance:
+            candidate = syn.Target_Attribute
             distance = dist
     if distance > 0.66*len(attribute):
         if request.GET.get('ols') == "true":

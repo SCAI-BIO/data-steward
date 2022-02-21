@@ -107,6 +107,13 @@ class DatamodelAttribute(djongo_models.Model):
         for attr, value in self.__dict__.items():
             yield attr, value
 
+class DatamodelAttibuteSynonym(djongo_models.Model):
+    Target_Attribute    = djongo_models.ForeignKey( DatamodelAttribute,
+                                                    to_field="Attribute",
+                                                    on_delete=djongo_models.CASCADE)
+    Synonym = djongo_models.CharField(max_length=1024)
+    
+
 
 class DatamodelCode(djongo_models.Model):              # primary key is implicit
     class Meta:

@@ -484,6 +484,19 @@
               </div>
             </div>
             <div class="row">
+              <div class="input-field">
+                <textarea name="attr_synonyms" id="new_attr_synonyms" cols="30" rows="10" class="materialize-textarea">
+                  
+                </textarea>
+                <label for="attr_synonym">
+                    Add Attribute Synonyms seperated by newline 
+                  </label>
+                  <span class="helper-text"
+                  >Synonyms</span
+                >
+              </div>
+            </div>
+            <div class="row">
               <div class="input-field col s6">
                 <input
                   type="text"
@@ -1084,7 +1097,8 @@ export default {
       document.getElementById("add_attr_loader").style.display = "block";
 
       var form_data = new FormData(document.getElementById("add_attr"));
-      console.log(form_data);
+      //console.log(form_data.getAll());
+      
       const postAttribute = await axios({
         method: "post",
         url: process.env.VUE_APP_CLINICALURL + "/post/attribute",

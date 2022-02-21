@@ -1,5 +1,5 @@
 <template>
-  <div><!--
+  <div>
     <div class="container" id="main_container">
       
       <div class="row">
@@ -23,7 +23,7 @@
       <div class="dot"></div>
     </div>
     <h5 id="helper_text"></h5>
-    -->
+    
   </div>
 </template>
 <script>

@@ -8,7 +8,7 @@
         <p class="flow-text">
           This service provides several features such as uploading and editing
           the current clinical datamodel which is used right now to normalize
-          data in the used in the <a href="/react-viewer">Clinical Viewer</a>.
+          data in the used in the <a href="/clinical-viewer">Clinical Viewer</a>.
           Moreover you can download the datamodel in .xlsx format after you
           added attributes, mappings or new sources.
          

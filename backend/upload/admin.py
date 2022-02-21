@@ -11,6 +11,8 @@ admin.site.register(DatamodelCode)
 admin.site.register(DatamodelCodeMapping)
 admin.site.register(DataPointsVisit)
 
+admin.site.register(DatamodelAttibuteSynonym)
+
 
 class DatamodelAtributeAdmin(admin.ModelAdmin):
 
