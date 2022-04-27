@@ -64,8 +64,6 @@ COPY mongo-init.js /var/steward/mongo-init.js
 
 RUN apt-get install -y nodejs
 
-
-
 RUN echo npm -v 
 
 COPY frontend/ /var/steward/

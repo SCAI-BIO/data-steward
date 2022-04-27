@@ -3,6 +3,8 @@ export LANG=C.UTF-8
 
 service redis-server start
 
+service redis start
+
 service --status-all 
 
 service mongod start
@@ -23,11 +25,13 @@ echo "VUE_APP_CLINICALURL=${BACKEND_URL}/clinical-backend/api-steward" >> .env.d
 
 echo "VUE_APP_CLINICALURL=${BACKEND_URL}/clinical-backend/api-steward" >> .env.production
 
-npm i 
+#npm i 
 
 npm run build
 
 node app_no_auth.js &
+
+redis-server & 
 
 cd ..
 cd ..

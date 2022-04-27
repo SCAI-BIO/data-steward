@@ -198,9 +198,9 @@ DATABASES = {
             'HOST': MONGO_HOST,
             #'HOST': '172.18.0.4',
             'PORT': 27017,
-            'USER': 'idsn2',
-            'PASSWORD' : 'idsn4tvb-c',
-            #'PASSWORD': 'ökkjsdvlkadslcik83kjsbd89',
+            'USER': 'idsn',
+            #'PASSWORD' : 'idsn4tvb-c',
+            'PASSWORD': 'ökkjsdvlkadslcik83kjsbd89',
             #'AUTH_SOURCE': 'coperimo_db',
             'AUTH_SOURCE': 'clinical_backend_2',
             
