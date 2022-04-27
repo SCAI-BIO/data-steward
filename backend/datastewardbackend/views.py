@@ -37,6 +37,7 @@ from django.core import serializers
 # custom import
 from upload.BulkCreateManager import BulkCreateManager
 from owlready2 import *
+import jaro
 
 from django.utils.timezone import make_aware
 
@@ -3805,14 +3806,17 @@ def camel_case_split(identifier):
     matches = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', identifier)
     return [m.group(0) for m in matches]
 
-def string_distance(s1,s2):
-
-    d = editdistance.eval(s1,s2)
+def string_distance(s1,s2, t="Lev"):
+    if t == "Jar":
+        d = jaro.jaro_metric(str(s1).lower(), str(s2).lower())
+    else:
+        d = editdistance.eval(str(s1).lower(),str(s2).lower())
     return d
 
 @api_view(['GET'])
 def get_nearest_neighbor_attribute(request):
     attribute = request.GET.get("attribute")
+    dist_ = request.GET.get("dist")
     INCLUDED_CHECK = False
     CAMELCASE_CHECK = False
     UNDERSCORE_SPLIT = False
@@ -3820,7 +3824,7 @@ def get_nearest_neighbor_attribute(request):
     all_attributes = DatamodelAttribute.objects.all()
     all_synonyms = DatamodelAttibuteSynonym.objects.all()
     candidate = all_attributes[0].Attribute
-    distance = string_distance(attribute,candidate)
+    distance = string_distance(attribute,candidate, str(dist_))
     ## bruteforece loop over all attributes and find a better one 
 
 
@@ -3834,14 +3838,14 @@ def get_nearest_neighbor_attribute(request):
                 return JsonResponse({'message': 'ok', 'candidate': candidate.Attribute, "distance": 0.81})
     ### Check in list of all attributes             
     for attr in all_attributes:
-        dist = string_distance(attr.Attribute,attribute)
+        dist = string_distance(attr.Attribute,attribute, str(dist_))
 
         if dist < distance:
             candidate = attr
             distance = dist
     ### Check in list of all synonyms
     for syn in all_synonyms:
-        dist = string_distance(syn.Synonym,attribute)
+        dist = string_distance(syn.Synonym,attribute, str(dist_))
 
         if dist < distance:
             candidate = syn.Target_Attribute
@@ -3894,7 +3898,10 @@ def get_nearest_neighbor_attribute(request):
                         candidate = attr
                         return JsonResponse({'message': 'ok', 'candidate': candidate.Attribute, "distance": 0.81})
         return JsonResponse({'message': 'ok', 'candidate': "--no-candidate--"}) ## if more then 66% of the string has to be changed
-    return JsonResponse({'message': 'ok', 'candidate': candidate.Attribute, "distance": 1- (distance/len(attribute))})
+    try:
+        return JsonResponse({'message': 'ok', 'candidate': candidate.Attribute, "distance": 1- (distance/len(attribute))})
+    except:
+        return JsonResponse({'message': 'ok', 'candidate': candidate, "distance": 1- (distance/len(attribute))})
 
 
 

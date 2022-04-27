@@ -59,9 +59,9 @@
   
             <select name="mapper_select" id="mapper_selector" @change="alterMapper()">
               <option value="" disabled selected>Select a mapper</option>
-              <option value="lev">Levenshtein</option>
-              <option value="jaro">Jaro–Winkler</option>
-              <option value="ai">AI mapper <i class="small material-icons">build</i> (beta)</option>
+              <option value="Lev">Levenshtein</option>
+              <option value="Jar">Jaro–Winkler</option>
+              <option value="Ai">AI mapper <i class="small material-icons">build</i> (beta)</option>
             </select>
       </div>
       <div v-if="makeSuggestion == true" class="col">
@@ -180,7 +180,7 @@ export default {
     return {
       openModalTS: "",
       helpText:
-        "This assistant provides help for mapping variaables. The list below provides all variables in the dataset uploaded, that yould not be found in the current system or there was no suitable mapping onto a variable currently in the system. The assistant provides a suggestion system and backup support from OLS (Ontology Lookup System). Enable the two checkboxes below to activate these features. Try and prefferedly choose those variables that are already in the system and if nothing fits your data import one from OLS. If there is not suitable variable in OLS then you can go to the Model Wizard and add a variable by hand.",
+        "This assistant provides help for mapping variables. The list below provides all variables in the dataset uploaded, that yould not be found in the current system or there was no suitable mapping onto a variable currently in the system. The assistant provides a suggestion system and backup support from OLS (Ontology Lookup System). Enable the two checkboxes below to activate these features. Try and prefferedly choose those variables that are already in the system and if nothing fits your data import one from OLS. If there is not suitable variable in OLS then you can go to the Model Wizard and add a variable by hand.",
       attrObj: {},
       olsAutocomplete: {},
       sourceObj: {},
@@ -191,6 +191,7 @@ export default {
         source: "",
         olsVar: "",
       },
+      mapper: "Lev",
       hasSuggestionOls: [],
 
       makeSuggestion: false,
@@ -261,7 +262,7 @@ export default {
   methods: {
     alterMapper: function(){
       var mapper = document.getElementById("mapper_selector").value;
-      console.log(mapper);
+      this.mapper = mapper;
     },
 
     checkForSingleSource: function () {
@@ -427,6 +428,7 @@ export default {
               this.rows[i].extVar +
               "&ols=" +
               this.includeOLS
+              + "&dist=" + this.mapper
           );
           if (response.data["candidate"] != "--no-candidate--") {
             if (response.data["candidate"].split("|").length > 2) {
