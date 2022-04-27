@@ -42,6 +42,6 @@ Depending if you run the backend on a server (e.g. example.com/data-steward-back
 There is a [docker image](https://hub.docker.com/repository/docker/phwegner/data-steward) available.
 
 ## Loading files
-After setting up the application you need a data model. For an example instance you can use: model.xslx in this repo. For an example cohort to upload to the DST you can use [this](https://github.com/phwegner/AAD_N_DR). 
+After setting up the application you need a data model. For an example instance you can use: backend/model.xslx in this repo. For an example cohort to upload to the DST you can use [this](https://github.com/phwegner/AAD_N_DR). 
 
 For further questions please use the issue board.
