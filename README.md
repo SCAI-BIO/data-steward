@@ -11,6 +11,10 @@
 
 https://data-steward-api.api-docs.io/1.0.0/
 
+## Test instance 
+
+https://data-steward.bio.scai.fraunhofer.de/data-steward
+
 ## License 
 
 Copyright 2021 Developers of Data Steward Tool 
