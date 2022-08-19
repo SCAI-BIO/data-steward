@@ -1,0 +1,390 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Data Steward API
+  description: This is the official API documentation for the Fraunhofer SCAI Data Steward.
+host: localhost:8000
+basePath: /clinical-backend/api-steward
+schemes:
+  - https
+paths:
+  /post/attribute:
+    post:
+      operationId: POST_attribute
+      summary: Post a new variable/attribute
+      tags:
+        - Attributes
+      description: >-
+        API endpoint to post new data variables. Post body is specified here as AttributePostBody
+      parameters:
+          - in: body
+            name: attribute
+            description: The source to create.
+            schema:
+              type:
+                object
+              properties:
+                topic:
+                  type: string
+                topic_description:
+                  type: string
+                unit:
+                  type: string
+                umbrella:
+                  type: string
+                umbrella_description:
+                  type: string
+                attribute:
+                  type: string
+                attribute_description:
+                  type: string
+                attribute_tooltip:
+                  type: string
+                        
+      produces:
+        - application/json
+      responses: 
+        "200":
+          description: Successful operation
+  /post/source:
+    post:
+      operationId: POST_source
+      summary: Post a new data source
+      tags:
+        - Sources
+      description: >-
+        API endpoint to post new sources. Post body is specified here as SourcePostBody
+      parameters:
+          - in: body
+            name: source
+            description: The source to create.
+            schema:
+              type: 
+                object
+              properties:
+                abbreviation: 
+                  type: string
+                source:
+                  type: string
+            
+      produces:
+        - application/json
+      responses: 
+        "200":
+          description: Successful operation
+          
+  /post/mapping:
+      post:
+        operationId: POST_mapping
+        summary: Post a new variable mapping
+        tags:
+          - Mappings
+        description: >-
+          API endpoint to post new variable mapping.
+        parameters:
+            - in: body
+              name: mapping
+              description: The mapping to create.
+              schema:
+                type: 
+                  object
+                properties:
+                  source:
+                    type: string
+                  target:
+                    type: string
+                  source_attr: 
+                    type: string
+        produces:
+          - application/json
+        responses: 
+          "200":
+            description: Successful operation
+
+  /fhir/get/patient/<source>/<pid>:
+    get:
+      operationId: GET_fhir-get-patient-<source>-<pid>
+      summary: Get a patient's information as a FHIR patient resource
+      tags:
+        - Data
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/PatientResource'
+  /get/attribute-mappings/all:
+    get:
+      operationId: GET_get-attribute-mappings-all
+      summary: Get all attribute mappings
+      tags:
+        - Mappings
+      description: >-
+        A mapping consists of an external and internal variable. A mapping can
+        have some kind of transformation e.g. mg --> g
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successfull operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mapping'
+  /fhir/get/observation/<id>:
+    get:
+      operationId: GET_fhir-get-observation-<id>
+      summary: Get a specific datapoint as FHIR observation resource
+      tags:
+        - Data
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/ObservationResource'
+  /get/attributes/all:
+    get:
+      operationId: GET_get-attributes-all
+      summary: Get all attributes
+      tags:
+        - Attributes
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successfull operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attribute'
+  /get/fulltext:
+    get:
+      operationId: GET_get-fulltext
+      summary: Search for attributes
+      tags:
+        - Attributes
+      description: This API seaches in names, tooltips and description texts of attributes
+      produces:
+        - application/json
+      parameters:
+        - name: text
+          in: query
+          description: The attributes name, tooltip or description
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successfull operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attribute'
+  /fhir/get/all-datapoints:
+    get:
+      operationId: GET_fhir-get-all-datapoints
+      summary: Get all datapoints as FHIR-JSON
+      tags:
+        - Data
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ObservationResource'
+  /get/attribute:
+    get:
+      operationId: GET_get-attribute
+      summary: Get a specific attribute
+      tags:
+        - Attributes
+      description: >-
+        Query a specific attribute or source currently presentin the data model.
+        Multiple results are possible.
+      produces:
+        - application/json
+      parameters:
+        - name: node
+          in: query
+          description: The attributes name or its tooltip.
+          required: true
+          type: string
+        - name: type
+          in: query
+          description: >-
+            Specify if you want to query sources or attributes. Attributes of
+            type is not specified.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: >-
+            successfull operation but array can be empty if the query returend
+            no attribute.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attribute'
+  /get/data/all:
+    get:
+      operationId: GET_get-data-all
+      summary: Get all available and mapped patient data
+      tags:
+        - Data
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successfull operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Datapoint'
+  /get/sources/all:
+    get:
+      operationId: GET_get-sources-all
+      summary: Get all sources
+      tags:
+        - Attributes
+      description: >-
+        Every attribute in the model comes from a certain source hence the model
+        holds infomation about varous data sources that can be queried here.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Source'
+  /get/data/attribute:
+    get:
+      operationId: GET_get-data-attribute
+      summary: Query all available and mapped patient data with a specific attribute
+      tags:
+        - Data
+      produces:
+        - application/json
+      parameters:
+        - name: attribute
+          in: query
+          description: The attributes name
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successfull operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Datapoint'
+        '404':
+          description: no such data
+definitions:
+  Mapping:
+    title: Mapping
+    type: object
+    properties:
+      Source:
+        type: string
+      name:
+        type: string
+      Target:
+        type: string
+      TargetDescription:
+        type: string
+      Transformation:
+        type: string
+        
+  AttributePostBody:
+    title: AttributePostBody
+    type: object
+    properties:
+      topic:
+        type: string
+      topic_description:
+        type: string
+      unit:
+        type: string
+      umbrella:
+        type: string
+      umbrella_description:
+        type: string
+      attribute:
+        type: string
+      attribute_description:
+        type: string
+      attribute_tooltip:
+        type: string
+  Attribute:
+    title: Attribute
+    type: object
+    properties:
+      topic:
+        type: string
+      name:
+        type: string
+      tooltip:
+        type: string
+      description:
+        type: string
+  PatientResource:
+    title: PatientResource
+    type: object
+    properties:
+      identifier:
+        type: string
+      text:
+        type: object
+      managingOrganization:
+        type: object
+  ObservationResource:
+    title: ObservationResource
+    type: object
+    properties:
+      code:
+        type: object
+      effectiveTiming:
+        type: object
+      performer:
+        type: object
+      status:
+        type: object
+      subject:
+        type: object
+  Datapoint:
+    title: Datapoint
+    type: object
+    properties:
+      variableExternal:
+        type: string
+      variableMapped:
+        type: string
+      value:
+        type: string
+      patientId:
+        type: string
+      timestamp:
+        type: string
+  Source:
+    title: Source
+    type: string
+    
+  SourcePostBody:
+    title: SourcePostBody
+    type: object
+    properties:
+      abbreviation: 
+        type: string
+      source:
+        type: string
