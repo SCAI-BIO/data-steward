@@ -2548,22 +2548,25 @@ def get_datamodel_as_excel(request):
     writer = pd.ExcelWriter(f)
 
     #DatamodelAttribute
-    data_attr_df = pd.DataFrame(DatamodelAttribute.objects.all().values())
+    data_attr_df = pd.DataFrame(DatamodelAttribute.objects.all().values()).rename(columns={"Unit_id": "Unit"})
 
     #DatamodelUnit
     data_unit_df = pd.DataFrame(DatamodelUnit.objects.all().values())
 
     # DatamodelCode
-    data_code_df = pd.DataFrame(DatamodelCode.objects.all().values())
+    data_code_df = pd.DataFrame(DatamodelCode.objects.all().values()).drop(['id'], axis=1)
+    #print(data_code_df.columns)
 
     #DatamodelAttributeMapping
-    data_attrmapping_df = pd.DataFrame(DatamodelAttributeMapping.objects.all().values())
+    data_attrmapping_df = pd.DataFrame(DatamodelAttributeMapping.objects.all().values()).drop(['id'], axis=1)
+    data_attrmapping_df = data_attrmapping_df.rename(columns={"Source_id": "Source", "Target_Attribute_id": "Target_Attribute"})
 
     #DatamodelCalculation
-    data_calculation_df = pd.DataFrame(DatamodelCalculation.objects.all().values())
+    data_calculation_df = pd.DataFrame(DatamodelCalculation.objects.all().values()).drop(['id'], axis=1)
+    data_calculation_df = data_calculation_df.rename(columns={'Source_id': "Source"})
 
     # DatamodelCodeMapping
-    data_codemapping_df = pd.DataFrame(DatamodelCodeMapping.objects.all().values())
+    data_codemapping_df = pd.DataFrame(DatamodelCodeMapping.objects.all().values()).drop(['id'], axis=1)
 
     # DatamodelSource
     data_source_df = pd.DataFrame(DatamodelSource.objects.all().values())
@@ -3674,8 +3677,12 @@ def upload_basicdata(request):
         df = pd.read_csv(f.file.path, sep=";")
         if len(df.columns) <2:
             raise
+        if not set(['PID', 'TIMESTAMP', 'ATTRIBUTE', 'VALUE']).issubset(list(df.columns)):
+            return JsonResponse({"message": "Check your columns headers. Requested are : 'PID', 'TIMESTAMP', 'ATTRIBUTE', 'VALUE'"}, status = 500)
     except:
         df = pd.read_csv(f.file.path)
+        if not set(['PID', 'TIMESTAMP', 'ATTRIBUTE', 'VALUE']).issubset(list(df.columns)):
+            return JsonResponse({"message": "Check your columns headers. Requested are : 'PID', 'TIMESTAMP', 'ATTRIBUTE', 'VALUE'"}, status = 500)
     
     id = data['_id']
     source = data["_source"]

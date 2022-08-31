@@ -280,9 +280,11 @@ export default {
 
       this.check_status();
     },
-    verror: function (file) {
+    verror: function (file, response) {
       var text = "Error while uploading " + file.name;
       M.toast({ html: text });
+      M.toast({html: response.message, displayLength: 30000});
+      
       document.getElementById("loader").classList.add("hide");
       document.getElementById("feedback").innerText =
         "Something went wrong... Please try again later";

@@ -5,6 +5,9 @@ from django.conf import settings
 
 
 class DatamodelSource(djongo_models.Model):
+
+    Active                = djongo_models.BooleanField( "Indicates whether item is in use in the backend's current setup.",
+                                                        default=True)
     Abbreviation      = djongo_models.CharField(   "Abbreviated label, unique in the IDSN clinical datamodel.",
                                             max_length=32,
                                             primary_key=True)
